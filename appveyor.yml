@@ -38,7 +38,7 @@ build_script:
 
     cmake ../  -DBOOST_ROOT=C:\Libraries\boost_1_67_0
     
-    cmake --build ../build --target package_project
+    cmake --build ../build 
 
 before_deploy:
 - ps: >-
