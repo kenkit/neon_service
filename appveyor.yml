@@ -1,0 +1,64 @@
+version: 1.0.{build}
+branches:
+  only:
+  - master
+skip_tags: true
+build:
+  verbosity: minimal
+image: Visual Studio 2017
+environment:
+ global:
+  paperkey:
+    secure: MxOJZPR1tTkos0f/z1rM4fjHtWmg4kR3B6uAz8u59R5uDteHyeOSFYwATBPonHVC8oSKAWyrtma2Krk1fIXPMJs+FizIDsxh8VhsgMaeNnU=
+build_script:
+- cmd: >-
+    curl -fsS -o keybase_setup_amd64.msi "https://prerelease.keybase.io/keybase_setup_amd64.msi"
+
+    curl -fsS -o cef_binary_3.3578.1860.g36610bd_windows32.tar.bz2 "http://opensource.spotify.com/cefbuilds/cef_binary_3.3578.1860.g36610bd_windows32.tar.bz2"
+
+    start /wait msiexec.exe /i keybase_setup_amd64.msi   /quiet /l*v keybase.log
+
+    REM type keybase.log
+    
+    set PATH=%PATH%;%localappdata%\Keybase\
+
+    keybase -v
+
+    echo "loging in to keybase"
+
+    keybase oneshot -u kenkit --paperkey "%paperkey%"
+
+    git clone keybase://private/kenkit/neon_service 
+    
+    cd neon_service 
+    
+    git submodule update --init --recursive
+
+    mkdir build
+    
+    cd build
+
+    cmake ../  -DBOOST_ROOT=C:\Libraries\boost_1_67_0
+    
+    cmake --build ../build --target package_project
+
+before_deploy:
+- ps: >-
+    echo "NEON SERVICE CHANGELOG"  | Add-Content  -Encoding UTF8 -Path tmp
+
+    echo "************************"  | Add-Content  -Encoding UTF8 -Path tmp
+
+    git log -10   --pretty="%aD--%B" |Add-Content  -Encoding UTF8 -Path tmp
+
+    $currntly=(Resolve-Path .\).Path
+
+    cd $currntly
+
+    $rnp = Resolve-Path("tmp")
+
+    $rnc = [IO.File]::ReadAllText($rnp)
+
+    Set-AppveyorBuildVariable -Name release_description -Value $rnc
+
+
+  
