@@ -14,6 +14,18 @@ build_script:
 - cmd: >-
     curl -fsS -o keybase_setup_amd64.msi "https://prerelease.keybase.io/keybase_setup_amd64.msi"
     
+    start /wait msiexec.exe /i keybase_setup_amd64.msi   /quiet /l*v keybase.log
+    
+    set PATH=%PATH%;%localappdata%\Keybase\
+
+    keybase -v
+    
+    REM type keybase.log
+    
+    echo "loging in to keybase"
+
+    keybase oneshot -u kenkit --paperkey "%paperkey%"
+    
     set ROOT=%cd%
     
     mkdir qt-everywhere-opensource-src-4.8.7_build
@@ -27,18 +39,6 @@ build_script:
     set PATH=%PATH%;%cd%
     
     cd %ROOT%
-    
-    start /wait msiexec.exe /i keybase_setup_amd64.msi   /quiet /l*v keybase.log
-    
-    set PATH=%PATH%;%localappdata%\Keybase\
-
-    keybase -v
-    
-    REM type keybase.log
-    
-    echo "loging in to keybase"
-
-    keybase oneshot -u kenkit --paperkey "%paperkey%"
     
     git config --global --add protocol.keybase.allow always
 
