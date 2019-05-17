@@ -36,11 +36,13 @@ build_script:
     
     cd qt-everywhere-opensource-src-4.8.7
     
-    set QTDIR=%cd%
+    set QTDIR=%cd%\
     
     cd bin
     
-    set PATH=%PATH%;%cd%
+    set QT_QMAKE_EXECUTABLE=%cd%\qmake.exe
+    
+    set PATH=%PATH%;%cd%\
     
     dir .
     
