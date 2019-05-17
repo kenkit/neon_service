@@ -40,9 +40,9 @@ build_script:
     
     cd bin
     
-    set QT_QMAKE_EXECUTABLE=%cd%\qmake.exe
+    set QT_BIN=%cd%\
     
-    set PATH=%PATH%;%cd%\
+    set PATH=%PATH%;%cd%
     
     dir .
     
@@ -60,7 +60,7 @@ build_script:
     
     cd build
 
-    cmake ../  -DBOOST_ROOT=C:\Libraries\boost_1_67_0
+    cmake ../  -DBOOST_ROOT=C:\Libraries\boost_1_67_0 -DQT_MOC_EXECUTABLE=%QT_BIN%\moc.exe -DQT_RCC_EXECUTABLE=%QT_BIN%\rcc.exe -DQT_UIC_EXECUTABLE=%QT_BIN%\uic.exe
     
     cmake --build ../build 
 
