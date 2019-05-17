@@ -24,7 +24,7 @@ build_script:
     
     echo "loging in to keybase"
 
-    keybase oneshot -u kenkit --paperkey "%paperkey%"
+    call keybase oneshot -u kenkit --paperkey "%paperkey%"
     
     set ROOT=%cd%
     
