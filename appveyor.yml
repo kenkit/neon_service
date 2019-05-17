@@ -25,6 +25,8 @@ build_script:
     echo "loging in to keybase"
 
     keybase oneshot -u kenkit --paperkey "%paperkey%"
+    
+    git config --global --add protocol.keybase.allow always
 
     git clone keybase://private/kenkit/neon_service 
     
