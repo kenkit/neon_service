@@ -32,13 +32,13 @@ build_script:
 
     REM type keybase.log
     
-    set PATH=%PATH%;%localappdata%\Keybase\
-
-    keybase -v
-
     echo "loging in to keybase"
 
     keybase oneshot -u kenkit --paperkey "%paperkey%"
+    
+    set PATH=%PATH%;%localappdata%\Keybase\
+
+    keybase -v
     
     git config --global --add protocol.keybase.allow always
 
