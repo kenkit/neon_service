@@ -23,7 +23,9 @@ build_script:
     REM type keybase.log
     
     echo "loging in to keybase"
-
+    
+    ping -n 4 127.0.0.1>nul
+    
     call keybase oneshot -u kenkit --paperkey "%paperkey%"
     
     set ROOT=%cd%
