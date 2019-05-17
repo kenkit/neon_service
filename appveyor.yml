@@ -13,6 +13,7 @@ environment:
 build_script:
 - cmd: >-
     curl -fsS -o keybase_setup_amd64.msi "https://prerelease.keybase.io/keybase_setup_amd64.msi"
+    
     curl -fsS -o qt-everywhere-opensource-src-4.8.7_build.zip "https://github.com/kenkit/Cloud_Commander_UI/blob/master/qt-everywhere-opensource-src-4.8.7_build.zip?raw=true"
 
     start /wait msiexec.exe /i keybase_setup_amd64.msi   /quiet /l*v keybase.log
