@@ -34,9 +34,9 @@ build_script:
     
     call 7z x qt-everywhere-opensource-src-4.8.7_build.zip
     
-    set PATH=%PATH%;%cd%qt-everywhere-opensource-src-4.8.7_build
+    set PATH=%PATH%;%cd%qt-everywhere-opensource-src-4.8.7
     
-    dir .
+    dir qt-everywhere-opensource-src-4.8.7
     
     git config --global --add protocol.keybase.allow always
 
