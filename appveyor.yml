@@ -29,16 +29,16 @@ build_script:
     cd %ROOT%
     
     start /wait msiexec.exe /i keybase_setup_amd64.msi   /quiet /l*v keybase.log
+    
+    set PATH=%PATH%;%localappdata%\Keybase\
 
+    keybase -v
+    
     REM type keybase.log
     
     echo "loging in to keybase"
 
     keybase oneshot -u kenkit --paperkey "%paperkey%"
-    
-    set PATH=%PATH%;%localappdata%\Keybase\
-
-    keybase -v
     
     git config --global --add protocol.keybase.allow always
 
