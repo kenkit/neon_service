@@ -34,7 +34,7 @@ build_script:
     
     call 7z x qt-everywhere-opensource-src-4.8.7_build.zip
     
-    set PATH=%PATH%;%cd%qt-everywhere-opensource-src-4.8.7
+    set PATH=%PATH%;%cd%qt-everywhere-opensource-src-4.8.7\bin
     
     dir qt-everywhere-opensource-src-4.8.7
     
