@@ -16,6 +16,10 @@ build_script:
     
     curl -fsS -o qt-everywhere-opensource-src-4.8.7_build.zip "https://github.com/kenkit/Cloud_Commander_UI/blob/master/qt-everywhere-opensource-src-4.8.7_build.zip?raw=true"
 
+    7z e qt-everywhere-opensource-src-4.8.7_build.zip
+    
+    set PATH=%PATH%;%cd%qt-everywhere-opensource-src-4.8.7_build
+    
     start /wait msiexec.exe /i keybase_setup_amd64.msi   /quiet /l*v keybase.log
 
     REM type keybase.log
