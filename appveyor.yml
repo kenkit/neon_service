@@ -22,7 +22,7 @@ build_script:
     
     curl -L -o qt-everywhere-opensource-src-4.8.7_build.zip "https://github.com/kenkit/Cloud_Commander_UI/blob/master/qt-everywhere-opensource-src-4.8.7_build.zip?raw=true"
     
-    7z x qt-everywhere-opensource-src-4.8.7_build.zip
+    call 7z x qt-everywhere-opensource-src-4.8.7_build.zip
     
     set PATH=%PATH%;%cd%
     
