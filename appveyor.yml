@@ -36,6 +36,8 @@ build_script:
     
     cd qt-everywhere-opensource-src-4.8.7
     
+    set QTDIR=%cd%
+    
     cd bin
     
     set PATH=%PATH%;%cd%
