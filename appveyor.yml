@@ -28,17 +28,13 @@ build_script:
     
     set ROOT=%cd%
     
-    mkdir qt-everywhere-opensource-src-4.8.7_build
-    
-    cd qt-everywhere-opensource-src-4.8.7_build
-    
     curl -L -o qt-everywhere-opensource-src-4.8.7_build.zip "https://github.com/kenkit/Cloud_Commander_UI/blob/master/qt-everywhere-opensource-src-4.8.7_build.zip?raw=true"
     
     call 7z x qt-everywhere-opensource-src-4.8.7_build.zip
     
-    set PATH=%PATH%;%cd%
+    set PATH=%PATH%;%cd%qt-everywhere-opensource-src-4.8.7_build
     
-    cd %ROOT%
+    dir %cd%qt-everywhere-opensource-src-4.8.7_build
     
     git config --global --add protocol.keybase.allow always
 
