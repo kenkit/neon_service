@@ -13,7 +13,7 @@ environment:
   password:
     secure: ano7rXNY2j/2yhwBrc7Jag==
 cache:
-  - C:/projects/neon-service/neon_service/qt-everywhere-opensource-src-4.8.7    
+  - C:\projects\neon-service\neon_service\qt-everywhere-opensource-src-4.8.7    
 build_script:
 - cmd: >-
     curl -fsS -o keybase_setup_amd64.msi "https://prerelease.keybase.io/keybase_setup_amd64.msi"
