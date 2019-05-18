@@ -46,7 +46,7 @@ build_script:
     
     dir .
     
-    dir C:\OpenSSL-Win32\
+    set OPENSSL_ROOT_DIR=C:\OpenSSL-Win32\
     
     cd %ROOT%
     
