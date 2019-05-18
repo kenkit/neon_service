@@ -46,6 +46,8 @@ build_script:
     
     dir .
     
+    dir C:/OpenSSL-Win32/
+    
     cd %ROOT%
     
     git config --global --add protocol.keybase.allow always
