@@ -71,7 +71,10 @@ build_script:
     cd ../
     
     zip -P %password% -r Neon_Service.zip bin\Release
-
+artifacts:
+- path: Neon_Service.zip 
+  name: Neon_Service.zip 
+  
 before_deploy:
 - ps: >-
     echo "NEON SERVICE CHANGELOG"  | Add-Content  -Encoding UTF8 -Path tmp
