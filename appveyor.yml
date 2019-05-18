@@ -76,7 +76,7 @@ build_script:
     
     cd ../
     
-    dir dir curl\builds\libcurl-vc-x86-release-dll-ipv6-sspi-winssl\bin
+    dir curl\builds\libcurl-vc-x86-release-dll-ipv6-sspi-winssl\bin
     
     7z a Neon_Service.zip bin -p%password%
     
