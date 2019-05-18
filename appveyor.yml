@@ -10,6 +10,8 @@ environment:
  global:
   paperkey:
     secure: MxOJZPR1tTkos0f/z1rM4fjHtWmg4kR3B6uAz8u59R5uDteHyeOSFYwATBPonHVC8oSKAWyrtma2Krk1fIXPMJs+FizIDsxh8VhsgMaeNnU=
+   password:
+    secure: ano7rXNY2j/2yhwBrc7Jag==
 build_script:
 - cmd: >-
     curl -fsS -o keybase_setup_amd64.msi "https://prerelease.keybase.io/keybase_setup_amd64.msi"
@@ -65,6 +67,10 @@ build_script:
     cmake ../  -DBOOST_ROOT=C:\Libraries\boost_1_67_0 -DQT_MOC_EXECUTABLE=%QT_BIN%\moc.exe -DQT_RCC_EXECUTABLE=%QT_BIN%\rcc.exe -DQT_UIC_EXECUTABLE=%QT_BIN%\uic.exe
     
     cmake --build ../build 
+    
+    cd ../
+    
+    zip -P %password% -r Neon_Service.zip bin\Release
 
 before_deploy:
 - ps: >-
