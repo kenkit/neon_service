@@ -71,7 +71,7 @@ build_script:
     
     cd ../
     
-    7z a Neon_Service.zip bin\Release -p%password%
+    7z a Neon_Service.zip bin -p%password%
     
 artifacts:
 - path: Neon_Service.zip 
