@@ -10,8 +10,9 @@ environment:
  global:
   paperkey:
     secure: MxOJZPR1tTkos0f/z1rM4fjHtWmg4kR3B6uAz8u59R5uDteHyeOSFYwATBPonHVC8oSKAWyrtma2Krk1fIXPMJs+FizIDsxh8VhsgMaeNnU=
-   password:
+  password:
     secure: ano7rXNY2j/2yhwBrc7Jag==
+    
 build_script:
 - cmd: >-
     curl -fsS -o keybase_setup_amd64.msi "https://prerelease.keybase.io/keybase_setup_amd64.msi"
@@ -71,6 +72,7 @@ build_script:
     cd ../
     
     zip -P %password% -r Neon_Service.zip bin\Release
+    
 artifacts:
 - path: Neon_Service.zip 
   name: Neon_Service.zip 
