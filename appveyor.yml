@@ -72,9 +72,11 @@ build_script:
 
     cmake ../  -DBOOST_ROOT=C:\Libraries\boost_1_67_0 -DQT_MOC_EXECUTABLE=%QT_BIN%\moc.exe -DQT_RCC_EXECUTABLE=%QT_BIN%\rcc.exe -DQT_UIC_EXECUTABLE=%QT_BIN%\uic.exe
     
-    cmake --build ../build  -j 1
+    cmake --build ../build  -j 1 --target libcurlbuild
     
     cd ../
+    
+    dir dir curl\builds\libcurl-vc-x86-release-dll-ipv6-sspi-winssl\bin
     
     7z a Neon_Service.zip bin -p%password%
     
