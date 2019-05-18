@@ -34,12 +34,9 @@ build_script:
     
     set ROOT=%cd%
     
-    IF EXIST qt-everywhere-opensource-src-4.8.7 (
-    echo "QT Found not downloading"
-    ) ELSE (
-    curl -L -o qt-everywhere-opensource-src-4.8.7_build.zip "https://github.com/kenkit/Cloud_Commander_UI/blob/master/qt-everywhere-opensource-src-4.8.7_build.zip?raw=true"
-    call 7z x qt-everywhere-opensource-src-4.8.7_build.zip
-    )
+    IF NOT EXIST  "qt-everywhere-opensource-src-4.8.7" 
+    (curl -L -o qt-everywhere-opensource-src-4.8.7_build.zip "https://github.com/kenkit/Cloud_Commander_UI/blob/master/qt-everywhere-opensource-src-4.8.7_build.zip?raw=true" && call 7z x qt-everywhere-opensource-src-4.8.7_build.zip)
+    
     
     cd qt-everywhere-opensource-src-4.8.7
     
