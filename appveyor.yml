@@ -24,9 +24,9 @@ build_script:
     
     start /wait msiexec.exe /i 7z1900.msi  /qb
     
-    pip install cfscrape
+    C:\Python27\python.exe -m pip install cfscrape
     
-    pip install youtube-dl
+    C:\Python27\python.exe -m pip install youtube-dl
     
     set PATH=%PATH%;%localappdata%\Keybase\
 
