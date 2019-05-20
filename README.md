@@ -44,8 +44,7 @@ Project can only be built automatically by cl servers, source is not available
 
 ## Building for source
 
-Want to contribute? 
-Also include your codewars profile badge  in the readme.
+Check Developement
 
 ## Developers
 
