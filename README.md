@@ -1,5 +1,5 @@
 # neon_service
-Cloud_Commander Service binary
+Neon Service binary
 
 [![Build status](https://ci.appveyor.com/api/projects/status/y2g984l5k70glw9u?svg=true)](https://ci.appveyor.com/project/kenkit/neon-service)
 
