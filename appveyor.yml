@@ -6,6 +6,7 @@ skip_tags: true
 build:
   verbosity: minimal
 image: Visual Studio 2017
+max_jobs: 1
 environment:
  global:
   paperkey:
