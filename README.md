@@ -59,7 +59,7 @@ Also include your codewars profile badge  in the readme.
 ## License
 ```
 /* Copyright (C) Neon Systems, Inc - All Rights Reserved
- * Unauthorized copying of this fil, via any medium is strictly prohibited
+ * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and Should only be installed using Neon
  * Written by Ken <webmaster@deaddevice.com>, May 2019
  */
