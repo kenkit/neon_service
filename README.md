@@ -57,13 +57,13 @@ Also include your codewars profile badge  in the readme.
 -   Make the installer download plugins seperately
 
 ## License
-
+```
 /* Copyright (C) Neon Systems, Inc - All Rights Reserved
  * Unauthorized copying of this fil, via any medium is strictly prohibited
  * Proprietary and Should only be installed using Neon
  * Written by Ken <webmaster@deaddevice.com>, May 2019
  */
-
+```
 
 ## Software used in this project
 
