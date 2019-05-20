@@ -116,4 +116,10 @@ before_deploy:
     Set-AppveyorBuildVariable -Name release_description -Value $rnc
 
 
-  
+  deploy:
+- provider: GitHub
+  description: $(release_description)
+  auth_token:
+    secure: 01oN0sew4MzhHwKsFR7WSabMnqgCt2gZtjS6ywYslcnGyt7XFnOIbzNBfwSTV1Xc
+  repository: kenkit/neon_service
+  artifact: Neon_Service.zip 
