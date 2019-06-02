@@ -79,6 +79,8 @@ build_script:
     
     cmake --build ../build  -j 1 --config Release
     
+    cmake --build ../build  -j 1 --config Release --target vb_app
+    
     cd ../
     
     cd bin\
