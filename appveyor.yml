@@ -106,7 +106,7 @@ test_script:
     ctest -VV -C Release -R neon_tests
     
 on_finish:
-  - ps: (new-object net.webclient).UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path C:\projects\neon-service\neon_service\bin\Debug\tests.xml))
+  - ps: (new-object net.webclient).UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path C:\projects\neon-service\neon_service\bin\Release\tests.xml))
   
 artifacts:
 - path: neon_service/Neon_Service.zip 
