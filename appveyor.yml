@@ -103,7 +103,7 @@ test_script:
 - cmd: >-
     cd build
     
-    ctest -VV -C Debug -R neon_tests
+    ctest -VV -C Release -R neon_tests
     
 on_finish:
   - ps: (new-object net.webclient).UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path C:\projects\neon-service\neon_service\bin\Debug\tests.xml))
