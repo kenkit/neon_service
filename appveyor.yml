@@ -79,7 +79,7 @@ build_script:
     
     cmake --build ../build  -j 1 --config Release
     
-    cmake --build ../build  -j 1 --config Release --target vb_app
+    cmake --build ../build  -j 1 --config Release --target qtapp
     
     cd ../
     
