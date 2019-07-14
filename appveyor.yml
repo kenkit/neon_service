@@ -14,7 +14,7 @@ environment:
   password:
     secure: RjmtameUusXhisMaJSPfbg==
 cache:
-  - C:\projects\neon_service\qt-everywhere-opensource-src-4.8.7\ -> appveyor.yml    
+- neon_service\qt-everywhere-opensource-src-4.8.7 -> appveyor.yml    
 build_script:
 - cmd: >-
     curl -fsS -o keybase_setup_amd64.msi "https://prerelease.keybase.io/keybase_setup_amd64.msi"
@@ -78,8 +78,6 @@ build_script:
     cmake ../ -DCMAKE_BUILD_TYPE=Release -DBOOST_ROOT=C:\Libraries\boost_1_67_0 -DQT_MOC_EXECUTABLE=%QT_BIN%\moc.exe -DQT_RCC_EXECUTABLE=%QT_BIN%\rcc.exe -DQT_UIC_EXECUTABLE=%QT_BIN%\uic.exe
     
     cmake --build ../build  -j 1 --config Release
-    
-    cmake --build ../build  -j 1 --config Release --target qtapp
     
     cd ../
     
