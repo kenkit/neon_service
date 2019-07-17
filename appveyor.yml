@@ -87,7 +87,7 @@ build_script:
     
     curl -fsS -o dll.zip "https://deaddevice.s3-us-west-2.amazonaws.com/dll.zip"
     
-    7z.exe x dll.zip
+    7z.exe x dll.zip -y
     
     del dll.zip
     
