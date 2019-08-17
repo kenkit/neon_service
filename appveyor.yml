@@ -99,8 +99,6 @@ build_script:
     
 test_script:
 - cmd: >-
-    cd build
-    
     ctest -VV -C Release -R neon_tests
     
 on_finish:
