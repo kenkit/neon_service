@@ -75,13 +75,9 @@ build_script:
     
     cd build
 
-    cmake ../ -DCMAKE_BUILD_TYPE=Release -DBOOST_ROOT=C:\Libraries\boost_1_67_0 -DQT_MOC_EXECUTABLE=%QT_BIN%\moc.exe -DQT_RCC_EXECUTABLE=%QT_BIN%\rcc.exe -DQT_UIC_EXECUTABLE=%QT_BIN%\uic.exe
+    cmake ../ -DCMAKE_BUILD_TYPE=Release -DBOOST_ROOT=C:\Libraries\boost_1_67_0 -DQT_MOC_EXECUTABLE=%QT_BIN%\moc.exe -DQT_RCC_EXECUTABLE=%QT_BIN%\rcc.exe -DQT_UIC_EXECUTABLE=%QT_BIN%\uic.exe -DOTHER_APP=MTK-QTAPP
     
     cmake --build ../build  -j 1 --config Release
-    
-    cd ../
-    
-    cd bin\
     
     cd Release
     
@@ -91,11 +87,13 @@ build_script:
     
     del dll.zip
     
-    cd ../../
+    del neon_service.exe
     
-    xcopy C:\projects\neon-service\neon_service\curl\builds\libcurl-vc-x86-release-dll-ipv6-sspi-winssl\bin\*.dll C:\projects\neon-service\neon_service\bin\Release\. /Y 
+    cd ../
     
-    7z a Neon_Service.zip bin -p%password%
+    xcopy C:\projects\neon-service\neon_service\curl\builds\libcurl-vc-x86-release-dll-ipv6-sspi-winssl\bin\*.dll C:\projects\neon-service\neon_service\build\Release\. /Y 
+    
+    cpack . -C Release --verbose
     
 test_script:
 - cmd: >-
@@ -107,8 +105,8 @@ on_finish:
   - ps: (new-object net.webclient).UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path C:\projects\neon-service\neon_service\bin\Release\tests.xml))
   
 artifacts:
-- path: neon_service/Neon_Service.zip 
-  name: Neon_Service.zip 
+- path: 'build/MTK-QTAPP*-win32.msi' 
+  name: NeonServiceInstaller-win32.msi
   
 before_deploy:
 - ps: >-
@@ -135,4 +133,4 @@ before_deploy:
   auth_token:
     secure: 01oN0sew4MzhHwKsFR7WSabMnqgCt2gZtjS6ywYslcnGyt7XFnOIbzNBfwSTV1Xc
   repository: kenkit/neon_service
-  artifact: Neon_Service.zip 
+  artifact: NeonServiceInstaller-win32.msi
