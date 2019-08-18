@@ -29,6 +29,8 @@ build_script:
     
     C:\Python27\python.exe -m pip install youtube-dl
     
+    pip install patch
+    
     set PATH=%PATH%;%localappdata%\Keybase\
 
     keybase -v
