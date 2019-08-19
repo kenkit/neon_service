@@ -53,10 +53,6 @@ build_script:
     
     cd qt-everywhere-opensource-src-4.8.7
     
-    call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat"
-    
-    call nmake clean
-    
     set QTDIR=%cd%\
     
     cd bin
