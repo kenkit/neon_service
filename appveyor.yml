@@ -53,6 +53,8 @@ build_script:
     
     cd qt-everywhere-opensource-src-4.8.7
     
+    call nmake clean
+    
     set QTDIR=%cd%\
     
     cd bin
