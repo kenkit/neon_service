@@ -53,8 +53,6 @@ build_script:
     
     cd qt-everywhere-opensource-src-4.8.7
     
-    IF EXIST "src" (rd /s /q "src")
-    
     set QTDIR=%cd%\
     
     cd bin
