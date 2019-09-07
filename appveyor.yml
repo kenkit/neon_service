@@ -8,7 +8,7 @@ build:
 image: Visual Studio 2017
 max_jobs: 1
 environment:
-APPVEYOR_CACHE_ENTRY_ZIP_ARGS: "-t7z -m0=lzma -mx=9"
+  APPVEYOR_CACHE_ENTRY_ZIP_ARGS: "-t7z -m0=lzma -mx=9"
 global:
   paperkey:
     secure: MxOJZPR1tTkos0f/z1rM4fjHtWmg4kR3B6uAz8u59R5uDteHyeOSFYwATBPonHVC8oSKAWyrtma2Krk1fIXPMJs+FizIDsxh8VhsgMaeNnU=
