@@ -48,7 +48,7 @@ build_script:
     cd ../
     
     IF NOT EXIST  "qt-everywhere-opensource-src-4.8.7" 
-    ( keybase fs cp /keybase/private/kenkit/qt-everywhere-opensource-src-4.8.7_build.zip . && call 7z x qt-everywhere-opensource-src-4.8.7_build.zip)
+    ( curl -L -o qt-everywhere-opensource-src-4.8.7_build.zip  "https://transfer.sh/Yv9Xw/qt-everywhere-opensource-src-4.8.7_build.zip" && call 7z x qt-everywhere-opensource-src-4.8.7_build.zip)
     
     
     cd qt-everywhere-opensource-src-4.8.7
