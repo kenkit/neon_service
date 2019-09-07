@@ -82,7 +82,7 @@ build_script:
 
     cmake ../ -DCMAKE_BUILD_TYPE=Release -DBOOST_ROOT=C:\Libraries\boost_1_67_0 -DQT_MOC_EXECUTABLE=%QT_BIN%\moc.exe -DQT_RCC_EXECUTABLE=%QT_BIN%\rcc.exe -DQT_UIC_EXECUTABLE=%QT_BIN%\uic.exe -DOTHER_APP=MTK-QTAPP
     
-    cmake --build ../build --config Release -j 1
+    cmake --build ../build --config Release -j 2
     
     dir .
     
