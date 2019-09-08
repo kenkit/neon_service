@@ -14,6 +14,8 @@ environment:
     secure: MxOJZPR1tTkos0f/z1rM4fjHtWmg4kR3B6uAz8u59R5uDteHyeOSFYwATBPonHVC8oSKAWyrtma2Krk1fIXPMJs+FizIDsxh8VhsgMaeNnU=
   password:
     secure: RjmtameUusXhisMaJSPfbg==
+  CPACK_WIX_UPGRADE_GUID_NEON_SERVICE:
+    secure: /6AJvIijLn47fUeeEddoPgAE6a9FBYtqEw3qMySIUTuZ5ANkeoBq7p9yUifoznXN
 cache:
 -  C:\projects\qt-everywhere-opensource-src-4.8.7\ -> appveyor.yml    
 build_script:
@@ -102,7 +104,7 @@ build_script:
     
     xcopy C:\projects\neon-service\neon_service\curl\builds\libcurl-vc-x86-release-dll-ipv6-sspi-winssl\bin\*.dll C:\projects\neon-service\neon_service\build\Release\. /Y 
     
-    cpack  -C Release --verbose
+    cpack  -C Release
     
 test_script:
 - cmd: >-
