@@ -102,7 +102,7 @@ build_script:
     
     xcopy C:\projects\neon-service\neon_service\curl\builds\libcurl-vc-x86-release-dll-ipv6-sspi-winssl\bin\*.dll C:\projects\neon-service\neon_service\build\Release\. /Y 
     
-    cpack . -C Release --verbose
+    cpack  -C Release --verbose
     
 test_script:
 - cmd: >-
