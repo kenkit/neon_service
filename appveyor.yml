@@ -140,6 +140,6 @@ before_deploy:
 - provider: GitHub
   description: $(release_description)
   auth_token:
-    secure: 01oN0sew4MzhHwKsFR7WSabMnqgCt2gZtjS6ywYslcnGyt7XFnOIbzNBfwSTV1Xc
+    secure: qHLbrLphi8zELMch79kGX1wWodd8UQ4nVQDWQAe38W6/ITHJ6S9t50RD6t79DH+O
   repository: kenkit/neon_service
   artifact: NeonServiceInstaller-win32.msi
