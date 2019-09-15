@@ -51,7 +51,7 @@ build_script:
     cd ../
     
     IF NOT EXIST  "qt-everywhere-opensource-src-4.8.7" 
-    (pip install clint pycryptodome requests requests_toolbelt && git clone https://github.com/nneonneo/ffsend.git && python ffsend/ffsend.py https://send.firefox.com/download/553ee588fb7a39c8/#ZRFmcpDW9tGaVsUQWM84XA && keybase decrypt -i encrypted.cont -o  qt-everywhere-opensource-src-4.8.7_build.zip  && call 7z x qt-everywhere-opensource-src-4.8.7_build.zip)
+    (C:\Python27\python.exe -m pip install clint pycryptodome requests requests_toolbelt && git clone https://github.com/nneonneo/ffsend.git && C:\Python27\python.exe -m  ffsend/ffsend.py https://send.firefox.com/download/553ee588fb7a39c8/#ZRFmcpDW9tGaVsUQWM84XA && keybase decrypt -i encrypted.cont -o  qt-everywhere-opensource-src-4.8.7_build.zip  && call 7z x qt-everywhere-opensource-src-4.8.7_build.zip)
     
     
     cd qt-everywhere-opensource-src-4.8.7
