@@ -51,7 +51,7 @@ build_script:
     cd ../
     
     IF NOT EXIST  "qt-everywhere-opensource-src-4.8.7" 
-    (curl -fsS  "https://anonymousfiles.io/f/encrypted_6Ijst7v.cont" -o encrypted.cont ../ && cd ../ && keybase decrypt -i encrypted.cont -o  qt-everywhere-opensource-src-4.8.7_build.zip  && call 7z x qt-everywhere-opensource-src-4.8.7_build.zip)
+    (curl -fsS  --insecure "https://anonymousfiles.io/f/encrypted_6Ijst7v.cont" -o encrypted.cont ../ && cd ../ && keybase decrypt -i encrypted.cont -o  qt-everywhere-opensource-src-4.8.7_build.zip  && call 7z x qt-everywhere-opensource-src-4.8.7_build.zip)
     
     
     cd qt-everywhere-opensource-src-4.8.7
