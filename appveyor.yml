@@ -98,7 +98,7 @@ build_script:
     
     del dll.zip
     
-    del neon_service.exe
+    REM del neon_service.exe
     
     cd ../
     
