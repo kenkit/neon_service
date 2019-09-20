@@ -122,6 +122,7 @@ build_script:
     
 test_script:
 - cmd: >-
+    cd NeonService
     ctest -VV -C %BUILD_TYPE% -R neon_tests
     
 on_finish:
