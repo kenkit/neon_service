@@ -98,11 +98,11 @@ build_script:
 
     dir .
     
-    curl -fsS -o dll.zip "https://deaddevice.s3-us-west-2.amazonaws.com/dll.zip"
+    REM curl -fsS -o dll.zip "https://deaddevice.s3-us-west-2.amazonaws.com/dll.zip"
     
-    7z.exe x dll.zip -y
+    REM 7z.exe x dll.zip -y
     
-    del dll.zip
+    REM del dll.zip
     
     REM del neon_service.exe
 
