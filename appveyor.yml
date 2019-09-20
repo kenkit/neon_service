@@ -104,7 +104,7 @@ build_script:
     
     REM del dll.zip
     
-    REM del neon_service.exe
+    del gtest_.pdb
 
     7z  a -ttar -ir!*.pdb  archive.tar
 
