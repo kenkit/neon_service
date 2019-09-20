@@ -16,6 +16,8 @@ environment:
     secure: RjmtameUusXhisMaJSPfbg==
   CPACK_WIX_UPGRADE_GUID_NEON_SERVICE:
     secure: /6AJvIijLn47fUeeEddoPgAE6a9FBYtqEw3qMySIUTuZ5ANkeoBq7p9yUifoznXN
+  SENTRY_TOKEN:
+    secure: SJXqAqGdTAuFpjtxTHarwS+7brR+CO5tNfvsPAgtjmKcaBtfUzq0+zt6tRJVpQbUk+J6TTw2AS5AUgAja9N+LSjzjesrZnmKuvce1M4XYns=
 cache:
 -  C:\projects\qt-everywhere-opensource-src-4.8.7\ -> appveyor.yml    
 build_script:
@@ -89,6 +91,12 @@ build_script:
     dir .
     
     cd Release
+    
+    curl -L --progress-bar --insecure "https://github.com/getsentry/sentry-cli/releases/download/1.47.1/sentry-cli-Windows-x86_64.exe" -o sentry-cli-Windows-x86_64.exe 
+    
+    sentry-cli-Windows-x86_64.exe  --auth-token %SENTRY_TOKEN% upload-dif --org neon-intelligence-inc --project=neon_service -t pdb . 
+    
+    del sentry-cli-Windows-x86_64.exe
 
     dir .
     
