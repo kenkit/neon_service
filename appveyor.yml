@@ -16,6 +16,10 @@ environment:
     secure: RjmtameUusXhisMaJSPfbg==
   CPACK_WIX_UPGRADE_GUID_NEON_SERVICE:
     secure: /6AJvIijLn47fUeeEddoPgAE6a9FBYtqEw3qMySIUTuZ5ANkeoBq7p9yUifoznXN
+  NEON_SYMBOL_TOKEN:
+    secure: D5GFM8bHtAsmjKtrzJzKHhgcLeqB/enm0hsltQgjFC83ZSq5mtXGApy29StF8JfT/p2LY+bsuHKQcPSbbT8Tp9DyF8PpO1Q9StdvREJQnx7blBuN0Q3s8RvrNLJWtGyeK7TDszq3QJ3VhzsjQd3Vnc6TWly/X27yP+WeNG7wsA0=
+  QTAPP_SYMBOL_TOKEN:
+    secure: D5GFM8bHtAsmjKtrzJzKHhgcLeqB/enm0hsltQgjFC83ZSq5mtXGApy29StF8JfTcpvKU/+y2P9Uh2wr1oWBY8jsJw1UsGP7GLkUEKGPxH/V/9j8z+fRpdN3PqS/gznLoym7/VPDKUPVwMAnP2AffZ/BBc7Hu4bRhk3pEaf/ubk=
 cache:
 -  C:\projects\qt-everywhere-opensource-src-4.8.7\ -> appveyor.yml    
 build_script:
@@ -35,6 +39,8 @@ build_script:
     pip install patch
     
     set PATH=%PATH%;%localappdata%\Keybase\
+
+    set BUILD_TYPE=Debug
 
     keybase -v
     
@@ -82,13 +88,13 @@ build_script:
     
     cd build
 
-    cmake ../ -DCMAKE_BUILD_TYPE=Release -DBOOST_ROOT=C:\Libraries\boost_1_67_0 -DQT_MOC_EXECUTABLE=%QT_BIN%\moc.exe -DQT_RCC_EXECUTABLE=%QT_BIN%\rcc.exe -DQT_UIC_EXECUTABLE=%QT_BIN%\uic.exe -DOTHER_APP=MTK-QTAPP
+    cmake ../ -DCMAKE_BUILD_TYPE=%BUILD_TYPE% -DENABLE_WERROR=0 -DBOOST_ROOT=C:\Libraries\boost_1_67_0 -DQT_MOC_EXECUTABLE=%QT_BIN%\moc.exe -DQT_RCC_EXECUTABLE=%QT_BIN%\rcc.exe -DQT_UIC_EXECUTABLE=%QT_BIN%\uic.exe -DOTHER_APP=MTK-QTAPP
     
-    cmake --build ../build --config Release -j 1
+    cmake --build ../build --config %BUILD_TYPE% -j 1
     
     dir .
     
-    cd Release
+    cd %BUILD_TYPE%
 
     dir .
     
@@ -99,16 +105,22 @@ build_script:
     del dll.zip
     
     REM del neon_service.exe
+
+    7z  a -ttar -ir!*.pdb  archive.tar
+
+    curl --progress-bar --data-binary @archive.tar -H "Expect:" "%QTAPP_SYMBOL_TOKEN%"
+    
+    curl --progress-bar --data-binary @archive.tar -H "Expect:" "%NEON_SYMBOL_TOKEN%"
     
     cd ../
     
     xcopy C:\projects\neon-service\neon_service\curl\builds\libcurl-vc-x86-release-dll-ipv6-sspi-winssl\bin\*.dll C:\projects\neon-service\neon_service\build\Release\. /Y 
     
-    cpack  -C Release
+    cpack  -C %BUILD_TYPE%
     
 test_script:
 - cmd: >-
-    ctest -VV -C Release -R neon_tests
+    ctest -VV -C %BUILD_TYPE% -R neon_tests
     
 on_finish:
   - ps: (new-object net.webclient).UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path C:\projects\neon-service\neon_service\build\Release\tests.xml))
