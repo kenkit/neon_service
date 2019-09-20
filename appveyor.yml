@@ -114,7 +114,7 @@ build_script:
     
     cd ../
     
-    xcopy C:\projects\neon-service\neon_service\curl\builds\libcurl-vc-x86-release-dll-ipv6-sspi-winssl\bin\*.dll C:\projects\neon-service\neon_service\build\Release\. /Y 
+    REM xcopy C:\projects\neon-service\neon_service\curl\builds\libcurl-vc-x86-release-dll-ipv6-sspi-winssl\bin\*.dll C:\projects\neon-service\neon_service\build\Release\. /Y 
     
     cpack  -C %BUILD_TYPE%
     
