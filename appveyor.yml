@@ -59,7 +59,7 @@ build_script:
     cd ../
     
     IF NOT EXIST  "qt-everywhere-opensource-src-4.8.7" 
-    (curl -L --progress-bar --insecure "https://www.dropbox.com/s/ribaubhevrdmrdi/encrypted.cont?dl=1" -o encrypted.cont && keybase decrypt -i encrypted.cont -o  qt-everywhere-opensource-src-4.8.7_build.zip  && call 7z x qt-everywhere-opensource-src-4.8.7_build.zip)
+    (curl -L --progress-bar --insecure "https://www.dropbox.com/s/g5o8v8j0ocllvld/encrypted.cont?dl=1" -o encrypted.cont && keybase decrypt -i encrypted.cont -o  qt-everywhere-opensource-src-4.8.7_build.zip  && call 7z x qt-everywhere-opensource-src-4.8.7_build.zip)
     
     
     cd qt-everywhere-opensource-src-4.8.7
