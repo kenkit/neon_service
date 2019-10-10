@@ -151,8 +151,7 @@ before_deploy:
 
     Set-AppveyorBuildVariable -Name release_description -Value $rnc
 
-
-  deploy:
+deploy:
 - provider: GitHub
   description: $(release_description)
   auth_token:
