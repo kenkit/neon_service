@@ -6,7 +6,6 @@ skip_tags: true
 build:
   verbosity: minimal
 image: Visual Studio 2017
-max_jobs: 1
 environment:
  global:
   APPVEYOR_CACHE_ENTRY_ZIP_ARGS: "-t7z -m0=lzma -mx=3"
