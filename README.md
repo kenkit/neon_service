@@ -2,6 +2,7 @@
 Neon Service binary
 
 [![Build status](https://ci.appveyor.com/api/projects/status/y2g984l5k70glw9u?svg=true)](https://ci.appveyor.com/project/kenkit/neon-service)
+![GitHub All Releases](https://img.shields.io/github/downloads/kenkit/neon_service/total?style=plastic)
 
 Neon Service was designed by Neon Itelligence and requires the installation of Neon.
 
