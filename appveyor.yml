@@ -123,6 +123,10 @@ build_script:
     
     dir %BUILD_TYPE%
     
+    call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat"
+    
+    call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+
     dumpbin /dependents %BUILD_TYPE%/extra_plugins/*.dll
     
 test_script:
