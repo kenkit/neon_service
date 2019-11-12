@@ -121,6 +121,8 @@ build_script:
     
     cpack  -C %BUILD_TYPE%
     
+    dumpbin /dependents %BUILD_TYPE%/extra_plugins/*.dll
+    
 test_script:
 - cmd: >-
      ctest -VV -C %BUILD_TYPE% -R neon_tests
