@@ -12,7 +12,7 @@ Neon Service was designed by Neon Itelligence and requires the installation of N
 
 ## Features
 
--   Youtube download/playback with neon
+-   ~~Youtube download/playback with neon~~
 -   Runs as a background service.
 -   File download manager.
 -   Search engine for files that can only be download/decrypted with neon (file names are mangled to avoid prying)
