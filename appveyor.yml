@@ -39,9 +39,9 @@ build_script:
     
     set PATH=%PATH%;%localappdata%\Keybase\
 
-    set BUILD_TYPE=Release
+    set BUILD_TYPE=Debug
 
-    setx BUILD_TYPE Release
+    setx BUILD_TYPE Debug
 
     keybase -v
     
