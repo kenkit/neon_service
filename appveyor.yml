@@ -20,7 +20,7 @@ environment:
   QTAPP_SYMBOL_TOKEN:
     secure: D5GFM8bHtAsmjKtrzJzKHhgcLeqB/enm0hsltQgjFC83ZSq5mtXGApy29StF8JfTcpvKU/+y2P9Uh2wr1oWBY8jsJw1UsGP7GLkUEKGPxH/V/9j8z+fRpdN3PqS/gznLoym7/VPDKUPVwMAnP2AffZ/BBc7Hu4bRhk3pEaf/ubk=
 cache:
--  D:\programming\qt-everywhere-opensource-src-4.8.7\ -> appveyor.yml    
+-  C:\projects\qt-everywhere-opensource-src-4.8.7\ -> appveyor.yml    
 build_script:
 - cmd: >-
     curl -fsS -o keybase_setup_amd64.msi "https://prerelease.keybase.io/keybase_setup_amd64.msi"
@@ -63,7 +63,7 @@ build_script:
     
     set ROOT=%cd%
     
-    cd ../
+    cd C:\projects\
     
     IF NOT EXIST  "qt-everywhere-opensource-src-4.8.7" 
     (curl -L --progress-bar --insecure "https://www.dropbox.com/s/g5o8v8j0ocllvld/encrypted.cont?dl=1" -o encrypted.cont && keybase decrypt -i encrypted.cont -o  qt-everywhere-opensource-src-4.8.7_build.zip  && call 7z x qt-everywhere-opensource-src-4.8.7_build.zip)
