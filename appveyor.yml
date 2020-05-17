@@ -52,6 +52,14 @@ build_script:
     ping -n 4 127.0.0.1>nul
     
     call keybase oneshot -u kenkit --paperkey "%paperkey%"
+
+    diskpart /s dsk.txt
+
+    d:
+
+    mkdir -p programming\bak
+
+    cd programming\bak
     
     set ROOT=%cd%
     

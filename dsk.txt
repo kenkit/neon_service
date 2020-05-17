@@ -1,0 +1,8 @@
+list disk 
+create vdisk file=c:\install1.vhd maximum=5000
+select vdisk file=c:\install1.vhd
+attach vdisk
+detail vdisk
+create partition primary
+format fs=ntfs quick
+assign letter=d
