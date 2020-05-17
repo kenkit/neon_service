@@ -63,6 +63,8 @@ build_script:
     
     set ROOT=%cd%
     
+    c:
+
     cd C:\projects\
     
     IF NOT EXIST  "qt-everywhere-opensource-src-4.8.7" 
@@ -82,6 +84,8 @@ build_script:
     dir .
     
     set OPENSSL_ROOT_DIR=C:\OpenSSL-Win32\
+
+    d:
     
     cd %ROOT%
     
