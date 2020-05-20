@@ -123,7 +123,7 @@ build_script:
     
     del gtest_.pdb
 
-    7z  a -ttar -ir!*.pdb  archive.tar
+    7z  a -tzip -ir!*.pdb  archive.zip  -mfb=64 -mx=9 -aoa
 
     curl --progress-bar https://curl.haxx.se/windows/dl-7.70.0/curl-7.70.0-win64-mingw.zip -o curl-7.70.0-win64-mingw.zip
 
@@ -131,9 +131,9 @@ build_script:
 
     curl-7.70.0-win64-mingw\bin\curl.exe --version
 
-    curl-7.70.0-win64-mingw\bin\curl.exe --progress-bar --data-binary @archive.tar -H "Expect:" "%QTAPP_SYMBOL_TOKEN%"
+    curl-7.70.0-win64-mingw\bin\curl.exe --progress-bar --data-binary @archive.zip -H "Expect:" "%QTAPP_SYMBOL_TOKEN%"
     
-    curl-7.70.0-win64-mingw\bin\curl.exe --progress-bar --data-binary @archive.tar -H "Expect:" "%NEON_SYMBOL_TOKEN%"
+    curl-7.70.0-win64-mingw\bin\curl.exe --progress-bar --data-binary @archive.zip -H "Expect:" "%NEON_SYMBOL_TOKEN%"
     
     cd ../
     
