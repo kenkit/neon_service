@@ -53,7 +53,13 @@ build_script:
     
     call keybase oneshot -u kenkit --paperkey "%paperkey%"
 
+    mkdir neon_service
+
+    cd neon_service
+
     set PROJECT_DIR=%cd%\
+
+    cd ../
 
     diskpart /s dsk.txt
 
@@ -159,7 +165,7 @@ on_finish:
   - ps: (new-object net.webclient).UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path D:\programming\bak\neon_service\build\$($env:BUILD_TYPE)\tests.xml))
   
 artifacts:
-- path: '*.msi' 
+- path:  'neon_service/*.msi' 
   name: NeonServiceInstaller-win32.msi
   
 before_deploy:
