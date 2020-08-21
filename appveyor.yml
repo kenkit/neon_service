@@ -3,6 +3,8 @@ branches:
   only:
   - master
 skip_tags: true
+build_cloud: DEADDEVICE
+image: Windows
 build:
   verbosity: minimal
 image: Visual Studio 2019
