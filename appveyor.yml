@@ -25,36 +25,6 @@ cache:
 -  C:\projects\qt-everywhere-opensource-src-4.8.7\ -> appveyor.yml    
 build_script:
 - cmd: >-
-    curl -fsS -o keybase_setup_amd64.msi "https://prerelease.keybase.io/keybase_setup_amd64.msi"
-    
-    start /wait msiexec.exe /i keybase_setup_amd64.msi   /quiet /l*v keybase.log
-    
-    curl -fsS -o 7z1900.msi "https://www.7-zip.org/a/7z1900.msi"
-    
-    start /wait msiexec.exe /i 7z1900.msi  /qb
-    
-    C:\Python27\python.exe -m pip install cfscrape
-    
-    C:\Python27\python.exe -m pip install youtube-dl
-    
-    pip install patch
-    
-    set PATH=%PATH%;%localappdata%\Keybase\
-
-    set BUILD_TYPE=Debug
-
-    setx BUILD_TYPE Debug
-
-    keybase -v
-    
-    REM type keybase.log
-    
-    echo "loging in to keybase"
-    
-    ping -n 4 127.0.0.1>nul
-    
-    call keybase oneshot -u kenkit --paperkey "%paperkey%"
-
     mkdir neon_service
 
     cd neon_service
@@ -63,51 +33,9 @@ build_script:
 
     cd ../
 
-    diskpart /s dsk.txt
-
     d:
 
-    mkdir -p programming\bak
-
-    cd programming\bak
-    
-    set ROOT=%cd%
-    
-    c:
-
-    cd C:\projects\
-    
-    IF NOT EXIST  "qt-everywhere-opensource-src-4.8.7" 
-    (curl -L --progress-bar --insecure "https://www.dropbox.com/s/g5o8v8j0ocllvld/encrypted.cont?dl=1" -o encrypted.cont && keybase decrypt -i encrypted.cont -o  qt-everywhere-opensource-src-4.8.7_build.zip  && call 7z x qt-everywhere-opensource-src-4.8.7_build.zip)
-    
-    
-    cd qt-everywhere-opensource-src-4.8.7
-    
-    set QTDIR=%cd%\
-    
-    cd bin
-    
-    set QT_BIN=%cd%\
-    
-    set PATH=%PATH%;%cd%
-    
-    dir .
-    
-    set OPENSSL_ROOT_DIR=C:\OpenSSL-Win32\
-
-    d:
-    
-    cd %ROOT%
-    
-    git config --global --add protocol.keybase.allow always
-
-    git clone keybase://private/kenkit/neon_service 
-    
-    cd neon_service 
-    
-    git submodule update --init --recursive
-
-    mkdir build
+    cd programming\bak\neon_service 
     
     cd build
 
