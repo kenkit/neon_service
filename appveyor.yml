@@ -27,7 +27,7 @@ build_script:
 
     set BUILD_TYPE=Debug
 
-    set SOURCE_DIR=..\bak\neon_service\build
+    set SOURCE_DIR=D:\programming\bak\neon_service\build
 
     mkdir build
 
@@ -41,49 +41,9 @@ build_script:
 
     cmake --build ../build --config %BUILD_TYPE% -j 2 --target Install
     
-    dir .
-    
-    cd %BUILD_TYPE%
-
-    dir .
-    
-    REM curl -fsS -o dll.zip "https://deaddevice.s3-us-west-2.amazonaws.com/dll.zip"
-    
-    REM 7z.exe x dll.zip -y
-    
-    REM del dll.zip
-    
-    del gtest_.pdb
-
-    7z  a -tzip -ir!*.pdb  archive.zip  -mfb=64 -mx=9 -aoa
-
-    curl --progress-bar https://curl.haxx.se/windows/dl-7.70.0/curl-7.70.0-win64-mingw.zip -o curl-7.70.0-win64-mingw.zip
-
-    7z x curl-7.70.0-win64-mingw.zip 
-
-    curl-7.70.0-win64-mingw\bin\curl.exe --version
-
-    curl-7.70.0-win64-mingw\bin\curl.exe --progress-bar --data-binary @archive.zip -H "Expect:" "%QTAPP_SYMBOL_TOKEN%"
-    
-    curl-7.70.0-win64-mingw\bin\curl.exe --progress-bar --data-binary @archive.zip -H "Expect:" "%NEON_SYMBOL_TOKEN%"
-    
-    cd ../
-    
-    REM xcopy C:\projects\neon-service\neon_service\curl\builds\libcurl-vc-x86-release-dll-ipv6-sspi-winssl\bin\*.dll C:\projects\neon-service\neon_service\build\Release\. /Y 
-    
     del *.msi 
 
     cpack  -C %BUILD_TYPE%
-
-    xcopy D:\programming\bak\neon_service\build\*.msi %PROJECT_DIR% /Y 
-    
-    dir %PROJECT_DIR%
-    
-    call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars32.bat"
-    
-    call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
-
-    dumpbin /dependents %BUILD_TYPE%/extra_plugins/*.dll
     
 test_script:
 - cmd: >-
