@@ -27,7 +27,7 @@ build_script:
 
     set BUILD_TYPE=Debug
 
-    set SOURCE_DIR=D:\programming\bak\neon_service\build
+    set SOURCE_DIR=D:\programming\bak\neon_service\
 
     mkdir build
 
