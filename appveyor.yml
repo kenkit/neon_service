@@ -50,7 +50,7 @@ test_script:
      ctest -VV -C %BUILD_TYPE% -R neon_tests
     
 on_finish:
-  - ps: (new-object net.webclient).UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path build\$($env:BUILD_TYPE)\tests.xml))
+  - ps: (new-object net.webclient).UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path $($env:BUILD_TYPE)\tests.xml))
   
 artifacts:
 - path:  'build\*.msi' 
