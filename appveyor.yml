@@ -67,7 +67,7 @@ build_script:
     cd C:\projects\
 
     IF NOT EXIST  "qt-everywhere-opensource-src-4.8.7"
-    (curl -L --progress-bar --insecure "https://www.dropbox.com/s/g5o8v8j0ocllvld/encrypted.cont?dl=1" -o encrypted.cont && keybase decrypt -i encrypted.cont -o  qt-everywhere-opensource-src-4.8.7_build.zip  && call 7z x qt-everywhere-opensource-src-4.8.7_build.zip)
+    (curl -L --progress-bar --insecure "https://uc7fe6e353d9b32e882cc6e7d54f.dl.dropboxusercontent.com/cd/0/get/BQdkbpGNntrwb4GMFyijCRp0jDa3kGWInXYjENQsPokNSMIbsAUwWh3atr-T71S8859WqrBncfPsR1P565eJ_8y9DgnQlwnbQReNbWnrZQs3lXPF9kJUvqqxY09XcDb_FuG367QIxtCXSWpSo-JBo7hh/file?dl=1#"  -o  qt-everywhere-opensource-src-4.8.7_build.zip  && call 7z x qt-everywhere-opensource-src-4.8.7_build.zip)
 
 
     cd qt-everywhere-opensource-src-4.8.7
