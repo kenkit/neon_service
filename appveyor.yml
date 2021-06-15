@@ -88,7 +88,7 @@ build_script:
 
     cd %ROOT%
 
-    git clone https://github.com/kenkit/neon_service_b/  neon_service
+    git clone git@github.com:kenkit/neon_service_b.git  neon_service
 
     cd neon_service
 
