@@ -26,8 +26,6 @@ build_script:
 
     curl -fsS -o id_rsa.gpg "https://raw.githubusercontent.com/kenkit/neon_server/master/id_rsa.gpg"
 
-    start /wait msiexec.exe /i 7z1900.msi  /qb
-
     REM ENCYRYPTED WITH:gpg -c --batch --passphrase "" id_rsa
 
     echo "Output to %userprofile%\.ssh\id_rsa"
