@@ -4,7 +4,6 @@ branches:
   - master
 skip_tags: true
 
-image: Windows
 build:
   verbosity: minimal
 environment:
