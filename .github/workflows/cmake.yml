@@ -1,0 +1,100 @@
+name: CMake
+
+on: [push]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Debug
+
+jobs:
+  Windows:
+   # The CMake configure and build commands are platform agnostic and should work equally
+   # well on Windows or Mac.  You can convert this to a matrix build if you need
+   # cross-platform coverage.
+   # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+   strategy:
+     matrix:
+       os: [windows-latest]
+   runs-on: ${{ matrix.os }}
+
+   steps:
+   - uses: actions/checkout@v2
+   - name: Configure SSH
+     run: |
+         Set-Service ssh-agent -StartupType Manual
+         Start-Service ssh-agent
+         git config --global core.sshCommand "'C:\Windows\System32\OpenSSH\ssh.exe'"
+   - name: Add SSH key
+     run: |
+         echo $env:SSH_PRIVATE_KEY | ssh-add -
+     env:
+         SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+   - name: Add github.com to known_hosts
+     run: |
+         mkdir ~/.ssh
+         ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+   - name: Create Build Environment
+     # Some projects don't allow in-source building, so create a separate build directory
+     # We'll use this as our working directory for all subsequent commands
+     run: cmake -E make_directory ${{github.workspace}}/build
+
+   - uses: suisei-cn/actions-download-file@v1
+     id: downloadfile  # Remember to give an ID if you need the output filename
+     name: Download mysql-connector-c++-8.0.23-win32-debug.zip
+     with:
+       url: "https://cdn.mysql.com//Downloads/Connector-C++/mysql-connector-c++-8.0.23-win32-debug.zip" #"https://cdn.mysql.com//Downloads/Connector-C++/mysql-connector-c++-8.0.23-win32.zip"
+       target: ${{github.workspace}}\
+
+   - name: xtract mysql
+     run: 7z x ${{github.workspace}}/mysql-connector-c++-8.0.23-win32-debug.zip  -o${{github.workspace}}
+
+   - name: echo mysql path
+     run:  dir %GITHUB_WORKSPACE%\mysql-connector-c++-8.0.23-win32
+     shell: cmd
+
+   - name: xtract openssl
+     run: 7z x ${{github.workspace}}/openssl.zip  -o${{github.workspace}}
+
+  #  - name: Install mysql
+  #    run:  start /wait msiexec.exe /i %GITHUB_WORKSPACE%\mysql-connector-c-6.1.11-win32.msi   /quiet /l*v install.log
+  #    shell: cmd
+   - name: Checkout submodule
+     run: git submodule update --init --recursive
+
+   - name: Install boost
+     uses: MarkusJx/install-boost@v1.0.1
+     id: install-boost
+     with:
+       # REQUIRED: Specify the required boost version
+       # A list of supported versions can be found here:
+       # https://github.com/actions/boost-versions/blob/main/versions-manifest.json
+       boost_version: 1.72.0
+       # OPTIONAL: Specify a toolset on windows
+       toolset: msvc14.2
+
+   - name: Configure CMake
+     # Use a bash shell so we can use the same syntax for environment variable
+     # access regardless of the host operating system
+     shell: bash
+     working-directory: ${{github.workspace}}/build
+     # Note the current convention is to use the -S and -B options here to specify source
+     # and build directories, but this is only available with CMake 3.13 and higher.
+     # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
+     run: cmake  $GITHUB_WORKSPACE/server_project/ -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DENABLE_LOCAL_TESTING=1  -DENABLE_JDBC_XDEV=1 -DENABLE_SSL_SERVER=1 -DMYSQL_CPP_DIR=D:/a/neon_server/neon_server/mysql-connector-c++-8.0.23-win32/ -A Win32
+     env:
+       BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+       OPENSSL_ROOT_DIR: ${{github.workspace}}/openssl
+   - name: Build
+     working-directory: ${{github.workspace}}/build
+     shell: bash
+     # Execute the build.  You can specify a specific target with "--target <NAME>"
+     run: cmake --build . --config $BUILD_TYPE
+
+   - name: Test
+     working-directory: ${{github.workspace}}/build
+     shell: bash
+     # Execute tests defined by the CMake configuration.
+     # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
+     run: ctest -C $BUILD_TYPE
+      git diff --check HEAD^
