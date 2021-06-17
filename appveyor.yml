@@ -55,7 +55,7 @@ build_script:
 
     diskpart /s dsk.txt
 
-    d:
+    e:
 
     mkdir -p programming\bak
 
@@ -85,7 +85,7 @@ build_script:
 
     set OPENSSL_ROOT_DIR=C:\OpenSSL-Win32\
 
-    d:
+    e:
 
     cd %ROOT%
 
@@ -137,7 +137,7 @@ build_script:
 
     cpack  -C %BUILD_TYPE%
 
-    xcopy D:\programming\bak\neon_service\build\*.msi %PROJECT_DIR% /Y
+    xcopy e:\programming\bak\neon_service\build\*.msi %PROJECT_DIR% /Y
 
     dir %PROJECT_DIR%
 
@@ -152,7 +152,7 @@ test_script:
      ctest -VV -C %BUILD_TYPE% -R neon_tests
 
 on_finish:
-  - ps: (new-object net.webclient).UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path D:\programming\bak\neon_service\build\$($env:BUILD_TYPE)\tests.xml))
+  - ps: (new-object net.webclient).UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path e:\programming\bak\neon_service\build\$($env:BUILD_TYPE)\tests.xml))
 
 artifacts:
 - path:  'neon_service/*.msi'
