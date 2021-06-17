@@ -98,7 +98,8 @@ jobs:
      env:
        BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
        QTDIR : E:\programming\qt-everywhere-opensource-src-4.8.7
-       #QT_BIN : E:\programming\qt-everywhere-opensource-src-4.8.7\bin
+       QT4_DIR : E:\programming\qt-everywhere-opensource-src-4.8.7
+       QT_BIN : E:\programming\qt-everywhere-opensource-src-4.8.7\bin
        OPENSSL_ROOT_DIR: E:\programming\openssl
 
    - name: Build
