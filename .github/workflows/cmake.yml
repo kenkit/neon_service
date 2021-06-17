@@ -63,7 +63,7 @@ jobs:
      working-directory: e:/programming/
 
    - name: xtract openssl
-     run: 7z x e:/programming/openssl.zip  -o${{github.workspace}}
+     run: 7z x e:/programming/openssl.zip
      working-directory: e:/programming/
 
    - name: echo qt path
@@ -99,7 +99,7 @@ jobs:
        BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
        QTDIR : E:\programming\qt-everywhere-opensource-src-4.8.7
        QT_BIN : E:\programming\qt-everywhere-opensource-src-4.8.7\bin
-      #OPENSSL_ROOT_DIR: E:\programming\openssl
+       OPENSSL_ROOT_DIR: E:\programming\openssl
 
    - name: Build
      working-directory: e:/programming/bak/neon_service/build
