@@ -67,7 +67,7 @@ jobs:
      working-directory: e:/programming/
 
    - name: echo qt path
-     run:  dir e:/programming/qt-everywhere-opensource-src-4.8.7
+     run:  dir e:\programming\qt-everywhere-opensource-src-4.8.7
      shell: cmd
      working-directory: e:/programming/
 
