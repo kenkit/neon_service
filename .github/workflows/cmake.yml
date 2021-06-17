@@ -59,7 +59,7 @@ jobs:
        target: ${{github.workspace}}/openssl.zip
 
    - name: xtract qt
-     run: 7z x ${{github.workspace}}/qt-everywhere-opensource-src-4.8.7_build.zip  -o${{github.workspace}}
+     run: 7z x ${{github.workspace}}/qt-everywhere-opensource-src-4.8.7_build.zip
      working-directory: ${{github.workspace}}
 
    - name: xtract openssl
@@ -100,6 +100,7 @@ jobs:
        OPENSSL_ROOT_DIR: D:/a/neon_service/neon_service/openssl
        QTDIR : D:/a/neon_service/neon_service/qt-everywhere-opensource-src-4.8.7
        QT_BIN : D:/a/neon_service/neon_service/qt-everywhere-opensource-src-4.8.7/bin
+       QT_INSTALL_LIBS: D:/a/neon_service/neon_service/qt-everywhere-opensource-src-4.8.7/lib
    - name: Build
      working-directory: e:/programming/bak/neon_service/build
      shell: bash
