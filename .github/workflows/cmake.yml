@@ -41,20 +41,28 @@ jobs:
 
    - uses: suisei-cn/actions-download-file@v1
      id: downloadfile  # Remember to give an ID if you need the output filename
-     name: qt
+     name: download qt
      with:
        url: "https://www.dropbox.com/s/8k6qv02x3vpe6s8/qt-everywhere-opensource-src-4.8.7_build.zip?dl=1#"
        target: ${{github.workspace}}/qt-everywhere-opensource-src-4.8.7_build.zip
 
+   - uses: suisei-cn/actions-download-file@v1
+     id: downloadfile2  # Remember to give an ID if you need the output filename
+     name: download openssl
+     with:
+       url: "https://raw.githubusercontent.com/kenkit/neon_server/master/openssl.zip"
+       target: ${{github.workspace}}/openssl.zip
+
    - name: xtract qt
      run: 7z x ${{github.workspace}}/qt-everywhere-opensource-src-4.8.7_build.zip  -o${{github.workspace}}
+
+   - name: xtract openssl
+     run: 7z x ${{github.workspace}}/openssl.zip  -o${{github.workspace}}
 
    - name: echo qt path
      run:  dir %GITHUB_WORKSPACE%\qt-everywhere-opensource-src-4.8.7
      shell: cmd
 
-   - name: xtract openssl
-     run: 7z x ${{github.workspace}}/openssl.zip  -o${{github.workspace}}
 
   #  - name: Install mysql
   #    run:  start /wait msiexec.exe /i %GITHUB_WORKSPACE%\mysql-connector-c-6.1.11-win32.msi   /quiet /l*v install.log
