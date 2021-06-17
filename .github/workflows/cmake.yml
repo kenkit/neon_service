@@ -60,13 +60,16 @@ jobs:
 
    - name: xtract qt
      run: 7z x ${{github.workspace}}/qt-everywhere-opensource-src-4.8.7_build.zip  -o${{github.workspace}}
+     working-directory: ${{github.workspace}}
 
    - name: xtract openssl
      run: 7z x ${{github.workspace}}/openssl.zip  -o${{github.workspace}}
+     working-directory: ${{github.workspace}}
 
    - name: echo qt path
      run:  dir %GITHUB_WORKSPACE%\qt-everywhere-opensource-src-4.8.7
      shell: cmd
+     working-directory: ${{github.workspace}}
 
    - name: Install boost
      uses: MarkusJx/install-boost@v1.0.1
