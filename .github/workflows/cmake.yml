@@ -48,7 +48,7 @@ jobs:
      id: downloadfile  # Remember to give an ID if you need the output filename
      name: download qt
      with:
-       url: "https://www.dropbox.com/s/8k6qv02x3vpe6s8/qt-everywhere-opensource-src-4.8.7_build.zip?dl=1#"
+       url: "https://oshi.at/yeJLNQ/qt-everywhere-opensource-src-4.8.7_build.zip"
        target: e:/programming/
 
    - uses: suisei-cn/actions-download-file@v1
