@@ -49,27 +49,27 @@ jobs:
      name: download qt
      with:
        url: "https://www.dropbox.com/s/8k6qv02x3vpe6s8/qt-everywhere-opensource-src-4.8.7_build.zip?dl=1#"
-       target: ${{github.workspace}}/qt-everywhere-opensource-src-4.8.7_build.zip
+       target: e:/programming/qt-everywhere-opensource-src-4.8.7_build.zip
 
    - uses: suisei-cn/actions-download-file@v1
      id: downloadfile2  # Remember to give an ID if you need the output filename
      name: download openssl
      with:
        url: "https://raw.githubusercontent.com/kenkit/neon_server/master/openssl.zip"
-       target: ${{github.workspace}}/openssl.zip
+       target: e:/programming/openssl.zip
 
    - name: xtract qt
-     run: 7z x ${{github.workspace}}/qt-everywhere-opensource-src-4.8.7_build.zip
-     working-directory: ${{github.workspace}}
+     run: 7z x e:/programming/qt-everywhere-opensource-src-4.8.7_build.zip
+     working-directory: e:/programming/
 
    - name: xtract openssl
-     run: 7z x ${{github.workspace}}/openssl.zip  -o${{github.workspace}}
-     working-directory: ${{github.workspace}}
+     run: 7z x e:/programming/openssl.zip  -o${{github.workspace}}
+     working-directory: e:/programming/
 
    - name: echo qt path
-     run:  dir %GITHUB_WORKSPACE%\qt-everywhere-opensource-src-4.8.7
+     run:  dir e:/programming/qt-everywhere-opensource-src-4.8.7
      shell: cmd
-     working-directory: ${{github.workspace}}
+     working-directory: e:/programming/
 
    - name: Install boost
      uses: MarkusJx/install-boost@v1.0.1
@@ -97,10 +97,10 @@ jobs:
      run: cmake  cmake -A Win32 ../ -DCMAKE_BUILD_TYPE=%BUILD_TYPE%  -DCMAKE_USE_SCHANNEL=1 -DENABLE_SSL_SERVER=1 -DENABLE_WERROR=0 -DQT_MOC_EXECUTABLE=%QT_BIN%\moc.exe -DQT_RCC_EXECUTABLE=%QT_BIN%\rcc.exe -DQT_UIC_EXECUTABLE=%QT_BIN%\uic.exe -DOTHER_APP=MTK-QTAPP -DCMAKE_INSTALL_PREFIX=%BUILD_TYPE%   -DDISABLE_UTILITIES_PLUGIN=FALSE -DDISABLE_BINARY_SIGN=TRUE -DCMAKE_USE_SCHANNEL=1 -DCMAKE_USE_OPENSSL=0 -DBUILD_TESTING=0 -DBUILD_SHARED_LIBS=1 -DENABLE_QTAPP_LOCAL_TESTING=0
      env:
        BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
-       OPENSSL_ROOT_DIR: D:/a/neon_service/neon_service/openssl
-       QTDIR : D:/a/neon_service/neon_service/qt-everywhere-opensource-src-4.8.7
-       QT_BIN : D:/a/neon_service/neon_service/qt-everywhere-opensource-src-4.8.7/bin
-       QT_INSTALL_LIBS: D:/a/neon_service/neon_service/qt-everywhere-opensource-src-4.8.7/lib
+       OPENSSL_ROOT_DIR: e:/programming/openssl
+       QTDIR : e:/programming/qt-everywhere-opensource-src-4.8.7
+       QT_BIN : e:/programming/qt-everywhere-opensource-src-4.8.7/bin
+
    - name: Build
      working-directory: e:/programming/bak/neon_service/build
      shell: bash
