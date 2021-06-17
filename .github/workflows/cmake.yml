@@ -94,7 +94,7 @@ jobs:
      # Note the current convention is to use the -S and -B options here to specify source
      # and build directories, but this is only available with CMake 3.13 and higher.
      # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
-     run: cmake -A Win32 ../ -DCMAKE_BUILD_TYPE=%BUILD_TYPE%  -DCMAKE_USE_SCHANNEL=1 -DENABLE_SSL_SERVER=1 -DENABLE_WERROR=0 -DQT_MOC_EXECUTABLE=E:/programming/qt-everywhere-opensource-src-4.8.7/bin/moc.exe -DQT_RCC_EXECUTABLE=E:/programming/qt-everywhere-opensource-src-4.8.7/bin/rcc.exe -DQT_UIC_EXECUTABLE=E:/programming/qt-everywhere-opensource-src-4.8.7/bin/uic.exe -DOTHER_APP=MTK-QTAPP -DCMAKE_INSTALL_PREFIX=%BUILD_TYPE%   -DDISABLE_UTILITIES_PLUGIN=FALSE -DDISABLE_BINARY_SIGN=TRUE -DCMAKE_USE_SCHANNEL=1 -DCMAKE_USE_OPENSSL=0 -DBUILD_TESTING=0 -DBUILD_SHARED_LIBS=1 -DENABLE_QTAPP_LOCAL_TESTING=0
+     run: cmake -A Win32 ../ -DCMAKE_BUILD_TYPE=%BUILD_TYPE%  -DCMAKE_USE_SCHANNEL=1 -DENABLE_SSL_SERVER=1 -DENABLE_WERROR=0 -DQT_MOC_EXECUTABLE=E:/programming/qt-everywhere-opensource-src-4.8.7/bin/moc.exe -DQT_RCC_EXECUTABLE=E:/programming/qt-everywhere-opensource-src-4.8.7/bin/rcc.exe -DCMAKE_PREFIX_PATH=E:/programming/qt-everywhere-opensource-src-4.8.7/lib/cmake -DQT_UIC_EXECUTABLE=E:/programming/qt-everywhere-opensource-src-4.8.7/bin/uic.exe -DOTHER_APP=MTK-QTAPP -DCMAKE_INSTALL_PREFIX=%BUILD_TYPE%   -DDISABLE_UTILITIES_PLUGIN=FALSE -DDISABLE_BINARY_SIGN=TRUE -DCMAKE_USE_SCHANNEL=1 -DCMAKE_USE_OPENSSL=0 -DBUILD_TESTING=0 -DBUILD_SHARED_LIBS=1 -DENABLE_QTAPP_LOCAL_TESTING=0
      env:
        BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
        QTDIR : E:\programming\qt-everywhere-opensource-src-4.8.7
