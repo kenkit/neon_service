@@ -48,7 +48,7 @@ jobs:
      id: downloadfile  # Remember to give an ID if you need the output filename
      name: download qt
      with:
-       url: "https://oshi.at/yeJLNQ/qt-everywhere-opensource-src-4.8.7_build.zip"
+       url: "https://oshi.at/xMtPaJ/pack.zip"
        target: e:/programming/
 
    - uses: suisei-cn/actions-download-file@v1
@@ -59,7 +59,7 @@ jobs:
        target: e:/programming/
 
    - name: xtract qt
-     run: 7z x e:/programming/qt-everywhere-opensource-src-4.8.7_build.zip
+     run: 7z x e:/programming/pack.zip
      working-directory: e:/programming/
 
    - name: xtract openssl
