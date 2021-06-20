@@ -48,7 +48,7 @@ jobs:
      id: downloadfile  # Remember to give an ID if you need the output filename
      name: download qt
      with:
-       url: "https://oshi.at/xMtPaJ/pack.zip"
+       url: "https://oshi.at/LyTybt/pack.zip.gpg"
        target: e:/programming/
 
    - uses: suisei-cn/actions-download-file@v1
@@ -59,7 +59,8 @@ jobs:
        target: e:/programming/
 
    - name: xtract qt
-     run: 7z x e:/programming/pack.zip
+     run: gpg --batch --yes --passphrase 1234 -d pack.zip.gpg -o pack.zip
+          7z x e:/programming/pack.zip
      working-directory: e:/programming/
 
    - name: xtract openssl
