@@ -59,7 +59,7 @@ jobs:
        target: e:/programming/
 
    - name: decrypt qt
-     run: gpg --batch --yes --passphrase 1234 -d pack.zip.gpg -o pack.zip
+     run: gpg --batch --yes --passphrase 1234 -o pack.zip -d pack.zip.gpg
      working-directory: e:/programming/
 
    - name: xtract qt
