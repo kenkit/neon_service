@@ -155,12 +155,6 @@ jobs:
         env:
           CPACK_WIX_UPGRADE_GUID_NEON_SERVICE: ${{ secrets.CPACK_WIX_UPGRADE_GUID_NEON_SERVICE }}
 
-      - name: 'Get Previous tag'
-        id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@v1"
-        with:
-          fallback: 2.0.0 # Optional fallback tag to use when no tag can be found
-
       - name: changelog
         run: |
             echo "NEON SERVICE CHANGELOG"  | Add-Content  -Encoding UTF8 -Path CHANGELOG.md
@@ -168,21 +162,18 @@ jobs:
             git log -10   --pretty="%aD--%B" |Add-Content  -Encoding UTF8 -Path CHANGELOG.md
         shell: powershell
         working-directory: d:/programming/bak/neon_service/
-
-      - name: Bump version and push tag
-        id: next_tag
-        uses: anothrNick/github-tag-action@1.26.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.SECRET_TOKEN }}
-          INITIAL_VERSION: ${{ steps.previoustag.outputs.tag }}
-          WITH_V: true
+      - name: "Tags"
+        id: release
+        uses: rymndhng/release-on-push-action@master
+        with:
+          bump_version_scheme: minor
 
       - name: "Create Release"
         uses: ncipollo/release-action@v1
         with:
           artifacts: "d:/programming/bak/neon_service/build/*.msi"
           bodyFile:  d:/programming/bak/neon_service/CHANGELOG.md
-          tag: ${{ steps.next_tag.outputs.new_tag}}
+          tag: ${{ steps.release.outputs.tag_name }}
           token: ${{ secrets.SECRET_TOKEN }}
 
       - name: "Test"
