@@ -99,7 +99,34 @@ jobs:
      # and build directories, but this is only available with CMake 3.13 and higher.
      # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
      run: set PATH=%PATH%;E:\programming\qt-everywhere-opensource-src-4.8.7\bin &&
-          cmake  -A Win32 ../ -DCMAKE_BUILD_TYPE=%BUILD_TYPE%  -DCMAKE_USE_SCHANNEL=1 -DENABLE_SSL_SERVER=1 -DENABLE_WERROR=0 -DOTHER_APP=MTK-QTAPP -DCMAKE_INSTALL_PREFIX=%BUILD_TYPE%   -DDISABLE_UTILITIES_PLUGIN=FALSE -DDISABLE_BINARY_SIGN=TRUE -DCMAKE_USE_SCHANNEL=1 -DCMAKE_USE_OPENSSL=0 -DBUILD_TESTING=0 -DBUILD_SHARED_LIBS=1 -DENABLE_QTAPP_LOCAL_TESTING=0
+          cmake  -A Win32 ../
+          -DSTATIC_CRT=0
+          -DENABLE_LIBARCHIVE_PLUGIN=1
+          -DQT_QMAKE_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7/bin/qmake.exe
+          -DCMAKE_BUILD_TYPE=%BUILD_TYPE%
+          -DENABLE_WERROR=0
+          -DCMAKE_INSTALL_PREFIX=Debug
+          -DDISABLE_UTILITIES_PLUGIN=FALSE
+          -DDISABLE_BINARY_SIGN=TRUE
+          -DCMAKE_USE_WINSSL=0
+          -DCMAKE_USE_SCHANNEL=1
+          -DCMAKE_USE_OPENSSL=0
+          -DBUILD_TESTING=0
+          -DBUILD_SHARED_LIBS=1
+          -DENABLE_QTAPP_LOCAL_TESTING=0
+          -DHAVE_WCSCPY=1
+          -DHAVE_WCSLEN=1
+          -DUSE_MEDIAINFO=0
+          -DENABLE_CLOG=1
+          -DENABLE_LOG_PERFORMANCE=1
+          -DHAVE_FFMPEG=0
+          -DUSE_PREBUILT_3RDPARTY=1
+          -DENABLE_SHARED_PTR=1
+          -DUSE_FREEIMAGE=0
+          -DENABLE_SSL_SERVER=1
+          -DWINDOWS_KIT_VER=10.0.19041.0 -DVC_CRED_VER=14.29.30036
+          -DQT_MOC_EXECUTABLE=E:\programming\qt-everywhere-opensource-src-4.8.7\bin\moc.exe
+          -DQT_RCC_EXECUTABLE=E:\programming\qt-everywhere-opensource-src-4.8.7\bin\rcc.exe
      env:
        BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
        OPENSSL_ROOT_DIR: E:\programming\openssl
