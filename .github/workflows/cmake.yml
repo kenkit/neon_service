@@ -179,7 +179,7 @@ jobs:
           WITH_V: true
 
       - name: "Create Release"
-      - uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1
         with:
           artifacts: "d:/programming/bak/neon_service/build/*.msi"
           bodyFile:  d:/programming/bak/neon_service/CHANGELOG.md
