@@ -49,7 +49,7 @@ jobs:
         id: downloadfile # Remember to give an ID if you need the output filename
         name: download qt
         with:
-          url: "https://oshi.at/LyTybt/pack.zip.gpg"
+          url: "https://oshi.at/BZCGht/pack.zip.gpg"
           target: d:/programming/
 
       - uses: suisei-cn/actions-download-file@v1
