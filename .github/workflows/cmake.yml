@@ -107,7 +107,6 @@ jobs:
           -DQT_QMAKE_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7/bin/qmake.exe
           -DCMAKE_BUILD_TYPE=%BUILD_TYPE%
           -DENABLE_WERROR=0
-          -DCMAKE_INSTALL_PREFIX=Debug
           -DDISABLE_UTILITIES_PLUGIN=FALSE
           -DDISABLE_BINARY_SIGN=TRUE
           -DCMAKE_USE_WINSSL=0
@@ -143,6 +142,17 @@ jobs:
         # Execute the build.  You can specify a specific target with "--target <NAME>"
         run: cmake --build . --config $BUILD_TYPE -j 2
 
+      - name: Create MSI Package
+        # Use a bash shell so we can use the same syntax for environment variable
+        # access regardless of the host operating system
+        shell: cmd
+        working-directory: d:/programming/bak/neon_service/build
+        # Note the current convention is to use the -S and -B options here to specify source
+        # and build directories, but this is only available with CMake 3.13 and higher.
+        # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
+        run:
+          cpack -C %BUILD_TYPE%
+
       - name: changelog
         run: |
             echo "NEON SERVICE CHANGELOG"  | Add-Content  -Encoding UTF8 -Path CHANGELOG.md
@@ -151,23 +161,35 @@ jobs:
         shell: powershell
         working-directory: d:/programming/bak/neon_service/
 
-
-      - name: release
-        uses: actions/create-release@v1
-        id: create_release
+      - name: 'Get Previous tag'
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
         with:
-          draft: false
-          prerelease: false
-          release_name: ${{ steps.version.outputs.version }}
-          tag_name: ${{ github.ref }}
-          body_path:  d:/programming/bak/neon_service/CHANGELOG.md
+          fallback: 2.0.0 # Optional fallback tag to use when no tag can be found
+      - name: 'Get next minor version'
+        id: semvers
+        uses: "WyriHaximus/github-action-next-semvers@v1"
+        with:
+          version: ${{ steps.previoustag.outputs.tag }}
+
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.26.0
         env:
           GITHUB_TOKEN: ${{ secrets.SECRET_TOKEN }}
+          WITH_V: true
 
-      - name: Test
+      - name: "Create Release"
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "d:/programming/bak/neon_service/build/*.msi"
+          bodyFile:  d:/programming/bak/neon_service/CHANGELOG.md
+          tag: ${{ steps.semvers.outputs.patch }}
+          token: ${{ secrets.SECRET_TOKEN }}
+
+      - name: "Test"
+          # Execute tests defined by the CMake configuration.
+          # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
+        run: ctest -C $BUILD_TYPE
+             git diff --check HEAD^
         working-directory: d:/programming/bak/neon_service/build
         shell: bash
-        # Execute tests defined by the CMake configuration.
-        # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-        run: ctest -C $BUILD_TYPE
-          git diff --check HEAD^
