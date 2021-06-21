@@ -8,97 +8,99 @@ env:
 
 jobs:
   Windows:
-   # The CMake configure and build commands are platform agnostic and should work equally
-   # well on Windows or Mac.  You can convert this to a matrix build if you need
-   # cross-platform coverage.
-   # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
-   strategy:
-     matrix:
-       os: [windows-latest]
-   runs-on: ${{ matrix.os }}
+    # The CMake configure and build commands are platform agnostic and should work equally
+    # well on Windows or Mac.  You can convert this to a matrix build if you need
+    # cross-platform coverage.
+    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+    strategy:
+      matrix:
+        os: [windows-latest]
+    runs-on: ${{ matrix.os }}
 
-   steps:
-   - uses: actions/checkout@v2
-   - name: Configure SSH
-     run: |
-         Set-Service ssh-agent -StartupType Manual
-         Start-Service ssh-agent
-         git config --global core.sshCommand "'C:\Windows\System32\OpenSSH\ssh.exe'"
-   - name: Add SSH key
-     run: |
-         echo $env:SSH_PRIVATE_KEY | ssh-add -
-     env:
-         SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
-   - name: Add github.com to known_hosts
-     run: |
-         mkdir ~/.ssh
-         ssh-keyscan github.com >> ~/.ssh/known_hosts
+    steps:
+      - uses: actions/checkout@v2
+      - name: Configure SSH
+        run: |
+          Set-Service ssh-agent -StartupType Manual
+          Start-Service ssh-agent
+          git config --global core.sshCommand "'C:\Windows\System32\OpenSSH\ssh.exe'"
+      - name: Add SSH key
+        run: |
+          echo $env:SSH_PRIVATE_KEY | ssh-add -
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+      - name: Add github.com to known_hosts
+        run: |
+          mkdir ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-   #- name: Create VHD
-     #run:  diskpart /s %GITHUB_WORKSPACE%\dsk.txt
-     #shell: cmd
+      #- name: Create VHD
+      #run:  diskpart /s %GITHUB_WORKSPACE%\dsk.txt
+      #shell: cmd
 
-   - name: Mkdir and Checkout submodule
-     run: mkdir -p programming/bak && cd programming/bak && git clone git@github.com:kenkit/neon_service_b.git  neon_service
+      - name: Mkdir and Checkout submodule
+        run:
+          mkdir -p programming/bak && cd programming/bak && git clone git@github.com:kenkit/neon_service_b.git  neon_service
           && cd neon_service && git submodule update --init --recursive && cd ../
-     shell: bash
-     working-directory: d:/
+        shell: bash
+        working-directory: d:/
 
-   - uses: suisei-cn/actions-download-file@v1
-     id: downloadfile  # Remember to give an ID if you need the output filename
-     name: download qt
-     with:
-       url: "https://oshi.at/LyTybt/pack.zip.gpg"
-       target: d:/programming/
+      - uses: suisei-cn/actions-download-file@v1
+        id: downloadfile # Remember to give an ID if you need the output filename
+        name: download qt
+        with:
+          url: "https://oshi.at/LyTybt/pack.zip.gpg"
+          target: d:/programming/
 
-   - uses: suisei-cn/actions-download-file@v1
-     id: downloadfile2  # Remember to give an ID if you need the output filename
-     name: download openssl
-     with:
-       url: "https://raw.githubusercontent.com/kenkit/neon_server/master/openssl.zip"
-       target: d:/programming/
+      - uses: suisei-cn/actions-download-file@v1
+        id: downloadfile2 # Remember to give an ID if you need the output filename
+        name: download openssl
+        with:
+          url: "https://raw.githubusercontent.com/kenkit/neon_server/master/openssl.zip"
+          target: d:/programming/
 
-   - name: decrypt qt
-     run: gpg --batch --yes --passphrase 1234 -o pack.zip -d pack.zip.gpg
-     working-directory: d:/programming/
+      - name: decrypt qt
+        run: gpg --batch --yes --passphrase 1234 -o pack.zip -d pack.zip.gpg
+        working-directory: d:/programming/
 
-   - name: xtract qt
-     run: 7z x d:/programming/pack.zip
-     working-directory: d:/programming/
+      - name: xtract qt
+        run: 7z x d:/programming/pack.zip
+        working-directory: d:/programming/
 
-   - name: xtract openssl
-     run: 7z x d:/programming/openssl.zip
-     working-directory: d:/programming/
+      - name: xtract openssl
+        run: 7z x d:/programming/openssl.zip
+        working-directory: d:/programming/
 
-   - name: echo qt path
-     run:  dir d:\programming\qt-everywhere-opensource-src-4.8.7\lib
-     shell: cmd
-     working-directory: d:/programming/
+      - name: echo qt path
+        run: dir d:\programming\qt-everywhere-opensource-src-4.8.7\lib
+        shell: cmd
+        working-directory: d:/programming/
 
-   - name: Install boost
-     uses: MarkusJx/install-boost@v1.0.1
-     id: install-boost
-     with:
-       # REQUIRED: Specify the required boost version
-       # A list of supported versions can be found here:
-       # https://github.com/actions/boost-versions/blob/main/versions-manifest.json
-       boost_version: 1.73.0
-       # OPTIONAL: Specify a toolset on windows
-       toolset: msvc14.2
-   - name: Create Build Environment
-     # Some projects don't allow in-source building, so create a separate build directory
-     # We'll use this as our working directory for all subsequent commands
-     run: cmake -E make_directory d:/programming/bak/neon_service/build
+      - name: Install boost
+        uses: MarkusJx/install-boost@v1.0.1
+        id: install-boost
+        with:
+          # REQUIRED: Specify the required boost version
+          # A list of supported versions can be found here:
+          # https://github.com/actions/boost-versions/blob/main/versions-manifest.json
+          boost_version: 1.73.0
+          # OPTIONAL: Specify a toolset on windows
+          toolset: msvc14.2
+      - name: Create Build Environment
+        # Some projects don't allow in-source building, so create a separate build directory
+        # We'll use this as our working directory for all subsequent commands
+        run: cmake -E make_directory d:/programming/bak/neon_service/build
 
-   - name: Configure CMake
-     # Use a bash shell so we can use the same syntax for environment variable
-     # access regardless of the host operating system
-     shell: cmd
-     working-directory: d:/programming/bak/neon_service/build
-     # Note the current convention is to use the -S and -B options here to specify source
-     # and build directories, but this is only available with CMake 3.13 and higher.
-     # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
-     run: set PATH=%PATH%;D:\programming\qt-everywhere-opensource-src-4.8.7\bin &&
+      - name: Configure CMake
+        # Use a bash shell so we can use the same syntax for environment variable
+        # access regardless of the host operating system
+        shell: cmd
+        working-directory: d:/programming/bak/neon_service/build
+        # Note the current convention is to use the -S and -B options here to specify source
+        # and build directories, but this is only available with CMake 3.13 and higher.
+        # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
+        run:
+          set PATH=%PATH%;D:\programming\qt-everywhere-opensource-src-4.8.7\bin &&
           cmake  -A Win32 ../
           -DSTATIC_CRT=0
           -DENABLE_LIBARCHIVE_PLUGIN=1
@@ -127,24 +129,39 @@ jobs:
           -DWINDOWS_KIT_VER=10.0.19041.0 -DVC_CRED_VER=14.29.30036
           -DQT_MOC_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7\bin\moc.exe
           -DQT_RCC_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7\bin\rcc.exe
-     env:
-       BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
-       OPENSSL_ROOT_DIR: D:\programming\openssl
-        #QTDIR : E:\programming\qt-everywhere-opensource-src-4.8.7
-        #QT4_DIR : E:\programming\qt-everywhere-opensource-src-4.8.7
-        #QT_BIN : E:\programming\qt-everywhere-opensource-src-4.8.7\bin
+        env:
+          BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+          OPENSSL_ROOT_DIR:
+            D:\programming\openssl
+            #QTDIR : E:\programming\qt-everywhere-opensource-src-4.8.7
+            #QT4_DIR : E:\programming\qt-everywhere-opensource-src-4.8.7
+            #QT_BIN : E:\programming\qt-everywhere-opensource-src-4.8.7\bin
 
+      - name: Build
+        working-directory: d:/programming/bak/neon_service/build
+        shell: bash
+        # Execute the build.  You can specify a specific target with "--target <NAME>"
+        run: cmake --build . --config $BUILD_TYPE
+      - name: changelog
+        run: echo "NEON SERVICE CHANGELOG" > d:/programming/bak/neon_service/CHANGELOG.md
+            echo "************************"  >> d:/programming/bak/neon_service/CHANGELOG.md
+            git log -10   --pretty="%aD--%B" >> d:/programming/bak/neon_service/CHANGELOG.md
+      - name: release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          release_name: ${{ steps.version.outputs.version }}
+          tag_name: ${{ github.ref }}
+          body_path:  d:/programming/bak/neon_service/CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.SECRET_TOKEN }}
 
-   - name: Build
-     working-directory: d:/programming/bak/neon_service/build
-     shell: bash
-     # Execute the build.  You can specify a specific target with "--target <NAME>"
-     run: cmake --build . --config $BUILD_TYPE
-
-   - name: Test
-     working-directory: d:/programming/bak/neon_service/build
-     shell: bash
-     # Execute tests defined by the CMake configuration.
-     # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-     run: ctest -C $BUILD_TYPE
-      git diff --check HEAD^
+      - name: Test
+        working-directory: d:/programming/bak/neon_service/build
+        shell: bash
+        # Execute tests defined by the CMake configuration.
+        # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
+        run: ctest -C $BUILD_TYPE
+          git diff --check HEAD^
