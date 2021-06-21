@@ -144,10 +144,12 @@ jobs:
         run: cmake --build . --config $BUILD_TYPE -j 2
 
       - name: changelog
-        run: echo "NEON SERVICE CHANGELOG" > CHANGELOG.md
-            echo "************************"  >> CHANGELOG.md
-            git log -10   --pretty="%aD--%B" >> CHANGELOG.md
+        run: echo "NEON SERVICE CHANGELOG"  | Add-Content  -Encoding UTF8 -Path CHANGELOG.md
+             echo "************************"  | Add-Content  -Encoding UTF8 -Path CHANGELOG.md
+             git log -10   --pretty="%aD--%B" |Add-Content  -Encoding UTF8 -Path CHANGELOG.md
+        shell: powershell
         working-directory: d:/programming/bak/neon_service/
+
 
       - name: release
         uses: actions/create-release@v1
