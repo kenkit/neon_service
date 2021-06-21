@@ -161,13 +161,6 @@ jobs:
         with:
           fallback: 2.0.0 # Optional fallback tag to use when no tag can be found
 
-      - name: Bump version and push tag
-        id: next_tag
-        uses: anothrNick/github-tag-action@1.26.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.SECRET_TOKEN }}
-          WITH_V: true
-
       - name: changelog
         run: |
             echo "NEON SERVICE CHANGELOG"  | Add-Content  -Encoding UTF8 -Path CHANGELOG.md
@@ -175,6 +168,14 @@ jobs:
             git log -10   --pretty="%aD--%B" |Add-Content  -Encoding UTF8 -Path CHANGELOG.md
         shell: powershell
         working-directory: d:/programming/bak/neon_service/
+
+      - name: Bump version and push tag
+        id: next_tag
+        uses: anothrNick/github-tag-action@1.26.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.SECRET_TOKEN }}
+          INITIAL_VERSION: ${{ steps.previoustag.outputs.tag }}
+          WITH_V: true
 
       - name: "Create Release"
         uses: ncipollo/release-action@v1
