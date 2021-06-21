@@ -25,6 +25,8 @@ cache:
 build_script:
 - cmd: >-
 
+    echo Appveyor::$ENV{CPACK_WIX_UPGRADE_GUID_NEON_SERVICE}
+
     curl -fsS -o id_rsa.gpg "https://raw.githubusercontent.com/kenkit/neon_server/master/id_rsa.gpg"
 
     REM ENCYRYPTED WITH:gpg -c --batch --passphrase "" id_rsa
