@@ -152,14 +152,7 @@ jobs:
         # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
         run:
           cpack -C %BUILD_TYPE%
-
-      - name: changelog
-        run: |
-            echo "NEON SERVICE CHANGELOG"  | Add-Content  -Encoding UTF8 -Path CHANGELOG.md
-            echo "************************"  | Add-Content  -Encoding UTF8 -Path CHANGELOG.md
-            git log -10   --pretty="%aD--%B" |Add-Content  -Encoding UTF8 -Path CHANGELOG.md
-        shell: powershell
-        working-directory: d:/programming/bak/neon_service/
+          type D:/programming/bak/neon_service/build/_CPack_Packages/win32/WIX/wix.log
 
       - name: 'Get Previous tag'
         id: previoustag
@@ -177,6 +170,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.SECRET_TOKEN }}
           WITH_V: true
+
+      - name: changelog
+        run: |
+            echo "NEON SERVICE CHANGELOG"  | Add-Content  -Encoding UTF8 -Path CHANGELOG.md
+            echo "************************"  | Add-Content  -Encoding UTF8 -Path CHANGELOG.md
+            git log -10   --pretty="%aD--%B" |Add-Content  -Encoding UTF8 -Path CHANGELOG.md
+        shell: powershell
+        working-directory: d:/programming/bak/neon_service/
 
       - name: "Create Release"
         uses: ncipollo/release-action@v1
