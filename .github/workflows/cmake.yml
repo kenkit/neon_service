@@ -151,8 +151,7 @@ jobs:
         # and build directories, but this is only available with CMake 3.13 and higher.
         # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
         run:
-          cpack -C %BUILD_TYPE%
-          type D:/programming/bak/neon_service/build/_CPack_Packages/win32/WIX/wix.log
+          cpack -C %BUILD_TYPE% --verbose
 
       - name: 'Get Previous tag'
         id: previoustag
