@@ -34,46 +34,46 @@ jobs:
          mkdir ~/.ssh
          ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-   - name: Create VHD
-     run:  diskpart /s %GITHUB_WORKSPACE%\dsk.txt
-     shell: cmd
+   #- name: Create VHD
+     #run:  diskpart /s %GITHUB_WORKSPACE%\dsk.txt
+     #shell: cmd
 
    - name: Mkdir and Checkout submodule
      run: mkdir -p programming/bak && cd programming/bak && git clone git@github.com:kenkit/neon_service_b.git  neon_service
           && cd neon_service && git submodule update --init --recursive && cd ../
      shell: bash
-     working-directory: e:/
+     working-directory: d:/
 
    - uses: suisei-cn/actions-download-file@v1
      id: downloadfile  # Remember to give an ID if you need the output filename
      name: download qt
      with:
        url: "https://oshi.at/LyTybt/pack.zip.gpg"
-       target: e:/programming/
+       target: d:/programming/
 
    - uses: suisei-cn/actions-download-file@v1
      id: downloadfile2  # Remember to give an ID if you need the output filename
      name: download openssl
      with:
        url: "https://raw.githubusercontent.com/kenkit/neon_server/master/openssl.zip"
-       target: e:/programming/
+       target: d:/programming/
 
    - name: decrypt qt
      run: gpg --batch --yes --passphrase 1234 -o pack.zip -d pack.zip.gpg
-     working-directory: e:/programming/
+     working-directory: d:/programming/
 
    - name: xtract qt
-     run: 7z x e:/programming/pack.zip
-     working-directory: e:/programming/
+     run: 7z x d:/programming/pack.zip
+     working-directory: d:/programming/
 
    - name: xtract openssl
-     run: 7z x e:/programming/openssl.zip
-     working-directory: e:/programming/
+     run: 7z x d:/programming/openssl.zip
+     working-directory: d:/programming/
 
    - name: echo qt path
-     run:  dir e:\programming\qt-everywhere-opensource-src-4.8.7\lib
+     run:  dir d:\programming\qt-everywhere-opensource-src-4.8.7\lib
      shell: cmd
-     working-directory: e:/programming/
+     working-directory: d:/programming/
 
    - name: Install boost
      uses: MarkusJx/install-boost@v1.0.1
@@ -88,17 +88,17 @@ jobs:
    - name: Create Build Environment
      # Some projects don't allow in-source building, so create a separate build directory
      # We'll use this as our working directory for all subsequent commands
-     run: cmake -E make_directory e:/programming/bak/neon_service/build
+     run: cmake -E make_directory d:/programming/bak/neon_service/build
 
    - name: Configure CMake
      # Use a bash shell so we can use the same syntax for environment variable
      # access regardless of the host operating system
      shell: cmd
-     working-directory: e:/programming/bak/neon_service/build
+     working-directory: d:/programming/bak/neon_service/build
      # Note the current convention is to use the -S and -B options here to specify source
      # and build directories, but this is only available with CMake 3.13 and higher.
      # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
-     run: set PATH=%PATH%;E:\programming\qt-everywhere-opensource-src-4.8.7\bin &&
+     run: set PATH=%PATH%;D:\programming\qt-everywhere-opensource-src-4.8.7\bin &&
           cmake  -A Win32 ../
           -DSTATIC_CRT=0
           -DENABLE_LIBARCHIVE_PLUGIN=1
@@ -125,24 +125,24 @@ jobs:
           -DUSE_FREEIMAGE=0
           -DENABLE_SSL_SERVER=1
           -DWINDOWS_KIT_VER=10.0.19041.0 -DVC_CRED_VER=14.29.30036
-          -DQT_MOC_EXECUTABLE=E:\programming\qt-everywhere-opensource-src-4.8.7\bin\moc.exe
-          -DQT_RCC_EXECUTABLE=E:\programming\qt-everywhere-opensource-src-4.8.7\bin\rcc.exe
+          -DQT_MOC_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7\bin\moc.exe
+          -DQT_RCC_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7\bin\rcc.exe
      env:
        BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
-       OPENSSL_ROOT_DIR: E:\programming\openssl
+       OPENSSL_ROOT_DIR: D:\programming\openssl
         #QTDIR : E:\programming\qt-everywhere-opensource-src-4.8.7
         #QT4_DIR : E:\programming\qt-everywhere-opensource-src-4.8.7
         #QT_BIN : E:\programming\qt-everywhere-opensource-src-4.8.7\bin
 
 
    - name: Build
-     working-directory: e:/programming/bak/neon_service/build
+     working-directory: d:/programming/bak/neon_service/build
      shell: bash
      # Execute the build.  You can specify a specific target with "--target <NAME>"
      run: cmake --build . --config $BUILD_TYPE
 
    - name: Test
-     working-directory: e:/programming/bak/neon_service/build
+     working-directory: d:/programming/bak/neon_service/build
      shell: bash
      # Execute tests defined by the CMake configuration.
      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
