@@ -130,8 +130,8 @@ jobs:
           -DQT_RCC_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7\bin\rcc.exe
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
-          OPENSSL_ROOT_DIR:
-            D:\programming\openssl
+          OPENSSL_ROOT_DIR: D:\programming\openssl
+          CPACK_WIX_UPGRADE_GUID_NEON_SERVICE: ${{ secrets.CPACK_WIX_UPGRADE_GUID_NEON_SERVICE }}
             #QTDIR : E:\programming\qt-everywhere-opensource-src-4.8.7
             #QT4_DIR : E:\programming\qt-everywhere-opensource-src-4.8.7
             #QT_BIN : E:\programming\qt-everywhere-opensource-src-4.8.7\bin
@@ -152,6 +152,8 @@ jobs:
         # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
         run:
           cpack -C %BUILD_TYPE% --verbose
+        env:
+          CPACK_WIX_UPGRADE_GUID_NEON_SERVICE: ${{ secrets.CPACK_WIX_UPGRADE_GUID_NEON_SERVICE }}
 
       - name: 'Get Previous tag'
         id: previoustag
