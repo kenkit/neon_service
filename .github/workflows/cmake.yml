@@ -47,7 +47,7 @@ jobs:
 
       - name: Getting new tag
         run: |
-          git fetch --tags
+          git fetch --tags --force
           echo "name=$(./c_tag.sh )" >> $GITHUB_ENV
         id: new_tag
         shell: bash
@@ -179,7 +179,7 @@ jobs:
         with:
           artifacts: "d:/programming/bak/neon_service/build/*.msi"
           bodyFile:  d:/programming/bak/neon_service/CHANGELOG.md
-          tag: ${{ env.TAG_NAME }}
+          tag: ${{ env.name }}
           token: ${{ secrets.SECRET_TOKEN }}
 
       - name: "Test"

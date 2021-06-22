@@ -1,4 +1,4 @@
-VERSION=`git tag --sort=-refname |sed -n 2p`
+VERSION=`git tag --sort=-refname |sed -n 1p`
 VERSION_BITS=(${VERSION//./ })
 VNUM1=${VERSION_BITS[0]}
 VNUM2=${VERSION_BITS[1]}
