@@ -162,18 +162,36 @@ jobs:
             git log -10   --pretty="%aD--%B" |Add-Content  -Encoding UTF8 -Path CHANGELOG.md
         shell: powershell
         working-directory: d:/programming/bak/neon_service/
-      - name: "Tags"
-        id: release
-        uses: rymndhng/release-on-push-action@master
-        with:
-          bump_version_scheme: minor
+
+
+      - name: Getting new tag
+        run: |
+          VERSION=`git tag --sort=-refname |sed -n 2p`
+          VERSION_BITS=(${VERSION//./ })
+
+          #get number parts and increase last one by 1
+          VNUM1=${VERSION_BITS[0]}
+          VNUM2=${VERSION_BITS[1]}
+          VNUM3=${VERSION_BITS[2]}
+          VNUM3=$((VNUM3+1))
+          NEW_TAG="$VNUM1.$VNUM2.$VNUM3"
+          echo "Updating $VERSION to $NEW_TAG"
+          echo '::set-output name=tag::$NEW_TAG'
+          echo "FOO=BAR" >> $GITHUB_ENV
+        id: new_tag
+        shell: bash
+
+      - name: Get new tag
+        run: echo "The selected color is ${{ steps.new_tag.outputs.tag }}"
+
+
 
       - name: "Create Release"
         uses: ncipollo/release-action@v1
         with:
           artifacts: "d:/programming/bak/neon_service/build/*.msi"
           bodyFile:  d:/programming/bak/neon_service/CHANGELOG.md
-          tag: ${{ steps.release.outputs.tag_name }}
+          tag: ${{ steps.new_tag.outputs.tag }}
           token: ${{ secrets.SECRET_TOKEN }}
 
       - name: "Test"
