@@ -47,6 +47,7 @@ jobs:
 
       - name: Getting new tag
         run: |
+          git fetch --tags
           echo "name=$(./c_tag.sh )" >> $GITHUB_ENV
         id: new_tag
         shell: bash
