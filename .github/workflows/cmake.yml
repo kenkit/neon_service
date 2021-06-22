@@ -47,16 +47,10 @@ jobs:
 
       - name: Getting new tag
         run: |
-          VERSION=`git tag --sort=-refname |sed -n 2p`
-          VERSION_BITS=(${VERSION//./ })
-          VNUM1=${VERSION_BITS[0]}
-          VNUM2=${VERSION_BITS[1]}
-          VNUM3=${VERSION_BITS[2]}
-          VNUM3=$((VNUM3+1))
-          NEW_TAG="$VNUM1.$VNUM2.$VNUM3"
-          echo "name=$(bash ./c_tag.sh )" >> $GITHUB_ENV
+          echo "name=$(${GITHUB_WORKSPACE}/c_tag.sh )" >> $GITHUB_ENV
         id: new_tag
         shell: bash
+        working-directory: d:/programming/bak/neon_service/
 
       - name: Test
         run: echo $name
