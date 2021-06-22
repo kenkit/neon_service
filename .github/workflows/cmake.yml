@@ -47,10 +47,9 @@ jobs:
 
       - name: Getting new tag
         run: |
-          echo "name=$(bash c_tag.sh )" >> $GITHUB_ENV
+          echo "name=$(./c_tag.sh )" >> $GITHUB_ENV
         id: new_tag
         shell: bash
-        working-directory: ${GITHUB_WORKSPACE}
 
       - name: Test
         run: echo $name
