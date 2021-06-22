@@ -61,7 +61,7 @@ jobs:
           VNUM3=${VERSION_BITS[2]}
           VNUM3=$((VNUM3+1))
           NEW_TAG="$VNUM1.$VNUM2.$VNUM3"
-          echo "Updating $VERSION to $NEW_TAG"
+          echo ::set-env name=TAG_NAME::$(echo $NEW_TAG)
         id: new_tag
         shell: bash
       - uses: suisei-cn/actions-download-file@v1
@@ -181,7 +181,7 @@ jobs:
         with:
           artifacts: "d:/programming/bak/neon_service/build/*.msi"
           bodyFile:  d:/programming/bak/neon_service/CHANGELOG.md
-          tag: ${{ steps.new_tag.outputs.tag }}
+          tag: ${{ env.TAG_NAME }}
           token: ${{ secrets.SECRET_TOKEN }}
 
       - name: "Test"
