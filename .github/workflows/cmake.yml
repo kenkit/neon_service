@@ -48,7 +48,7 @@ jobs:
       - name: Getting new tag
         run: |
           chmod +x "${GITHUB_WORKSPACE}/c_tag.sh"
-          echo "name=$(c_tag.sh )" >> $GITHUB_ENV
+          echo "name=$(./c_tag.sh )" >> $GITHUB_ENV
         id: new_tag
         shell: bash
         working-directory: ${GITHUB_WORKSPACE}
