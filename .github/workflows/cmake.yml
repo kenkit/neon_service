@@ -47,10 +47,11 @@ jobs:
 
       - name: Getting new tag
         run: |
-          echo "name=$(${GITHUB_WORKSPACE}/c_tag.sh )" >> $GITHUB_ENV
+          chmod +x "${GITHUB_WORKSPACE}/c_tag.sh"
+          echo "name=$(c_tag.sh )" >> $GITHUB_ENV
         id: new_tag
         shell: bash
-        working-directory: d:/programming/bak/neon_service/
+        working-directory: ${GITHUB_WORKSPACE}
 
       - name: Test
         run: echo $name
