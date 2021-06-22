@@ -54,7 +54,7 @@ jobs:
           VNUM3=${VERSION_BITS[2]}
           VNUM3=$((VNUM3+1))
           NEW_TAG="$VNUM1.$VNUM2.$VNUM3"
-          echo "name=$(echo $NEW_TAG)" >> $GITHUB_ENV
+          echo "name=$(bash ./c_tag.sh )" >> $GITHUB_ENV
         id: new_tag
         shell: bash
 
