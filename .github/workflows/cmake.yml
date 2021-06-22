@@ -1,6 +1,11 @@
 name: CMake
 
-on: [push]
+on:
+  push:
+    branches:
+    - '**'
+    tags-ignore:
+      - '**'
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
