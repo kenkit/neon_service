@@ -45,13 +45,6 @@ jobs:
         shell: bash
         working-directory: d:/
 
-      - uses: suisei-cn/actions-download-file@v1
-        id: downloadfile # Remember to give an ID if you need the output filename
-        name: download qt
-        with:
-          url: "https://oshi.at/BZCGht/pack.zip.gpg"
-          target: d:/programming/
-
       - name: Getting new tag
         run: |
           VERSION=`git tag --sort=-refname |sed -n 2p`
@@ -62,8 +55,20 @@ jobs:
           VNUM3=$((VNUM3+1))
           NEW_TAG="$VNUM1.$VNUM2.$VNUM3"
           echo ::set-env name=TAG_NAME::$(echo $NEW_TAG)
+          echo "name=$(echo $NEW_TAG)" >> $GITHUB_ENV
         id: new_tag
         shell: bash
+
+      - name: Test
+        run: echo $name
+
+      - uses: suisei-cn/actions-download-file@v1
+        id: downloadfile # Remember to give an ID if you need the output filename
+        name: download qt
+        with:
+          url: "https://oshi.at/BZCGht/pack.zip.gpg"
+          target: d:/programming/
+
       - uses: suisei-cn/actions-download-file@v1
         id: downloadfile2 # Remember to give an ID if you need the output filename
         name: download openssl
