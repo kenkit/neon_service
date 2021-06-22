@@ -54,7 +54,6 @@ jobs:
           VNUM3=${VERSION_BITS[2]}
           VNUM3=$((VNUM3+1))
           NEW_TAG="$VNUM1.$VNUM2.$VNUM3"
-          echo ::set-env name=TAG_NAME::$(echo $NEW_TAG)
           echo "name=$(echo $NEW_TAG)" >> $GITHUB_ENV
         id: new_tag
         shell: bash
