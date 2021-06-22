@@ -56,21 +56,14 @@ jobs:
         run: |
           VERSION=`git tag --sort=-refname |sed -n 2p`
           VERSION_BITS=(${VERSION//./ })
-
-          #get number parts and increase last one by 1
           VNUM1=${VERSION_BITS[0]}
           VNUM2=${VERSION_BITS[1]}
           VNUM3=${VERSION_BITS[2]}
           VNUM3=$((VNUM3+1))
           NEW_TAG="$VNUM1.$VNUM2.$VNUM3"
           echo "Updating $VERSION to $NEW_TAG"
-          echo '::set-output name=tag::$NEW_TAG'
         id: new_tag
         shell: bash
-
-      - name: Get new tag
-        run: echo "The selected color is ${{ steps.new_tag.outputs.tag }}"
-
       - uses: suisei-cn/actions-download-file@v1
         id: downloadfile2 # Remember to give an ID if you need the output filename
         name: download openssl
