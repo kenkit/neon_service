@@ -18,7 +18,7 @@ Neon Service was designed by Neon Itelligence and requires the installation of N
 -   Search engine for files that can only be download/decrypted with neon (file names are mangled to avoid prying)
 -   Will support mega uploads|downloads|search|encryption|decryption of our files
 -   Remote download manager.
--   Google chrome plugin to grab new download links like idm.
+-   ~~Google chrome plugin to grab new download links like idm.~~
 -   Google drive plugin
 -   Google drive upload encrypted files
 -   Gadget recovery options for mobile devices supports(MTK) Work in progress(QLCM,SPD) .
@@ -26,7 +26,7 @@ Neon Service was designed by Neon Itelligence and requires the installation of N
 -   Supports automatic decompression of supported firmware files
 -   Upload system shares your files to our global search engine
 -   We are working on a discord server support system that will be integrated into Neon
--   Everything is a WIP atm.
+-   ~~Everything is a WIP atm.~~
 
 ## Installation
 
@@ -45,7 +45,7 @@ Project is not opensource but things may change in the future.
 
 Want to work with us ? Get in touch with me and we will see what we can do.
 
-Project can only be built automatically by cl servers, source is not available 
+Project can only be built automatically by cl servers, source is not available
 
 ## Building for source
 
@@ -74,23 +74,23 @@ Check Developement
    [CURL]()
 
    [ARIA2]()
-   
+
    [CRYPTOPP]()
-   
+
    [7zip-cpp]()
-   
+
    [JSON]()
-   
+
    [GOOGLETEST]()
-   
+
    [FLATBUFFERS]()
-   
+
    [YOUTUBEDL]()
-   
+
    [CFSCRAPE]()
-   
+
    [SIMPLEWEBSOCKETS]()
-   
+
    [SPFLASHTOOL]()
-   
+
 
