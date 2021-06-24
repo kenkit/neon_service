@@ -191,14 +191,14 @@ jobs:
         shell: cmd
         working-directory: d:/programming/bak/neon_service/build
         env:
-          QTAPP_SYMBOL_TOKEN: ${{ secrets.QTAPP_SYMBOL_TOKEN }}
-          NEON_SYMBOL_TOKEN: ${{ secrets.NEON_SYMBOL_TOKEN }}
+          QTAPP_SYMBOL_TOKEN: 
+          NEON_SYMBOL_TOKEN: 
         run: |
               cd $BUILD_TYPE 
               rm gtest_.pdb
               7z  a -tzip -ir!*.pdb  archive.zip  -mfb=64 -mx=9 -aoa
-              curl --progress-bar --data-binary @archive.zip -H \"Expect:\" \"$QTAPP_SYMBOL_TOKEN\"
-              curl --progress-bar --data-binary @archive.zip -H \"Expect:\" \"$NEON_SYMBOL_TOKEN\"
+              curl --progress-bar --data-binary @archive.zip -H \"Expect:\" "${{ secrets.QTAPP_SYMBOL_TOKEN }}"
+              curl --progress-bar --data-binary @archive.zip -H \"Expect:\" "${{ secrets.NEON_SYMBOL_TOKEN }}"
 
       - name: "Test"
           # Execute tests defined by the CMake configuration.
