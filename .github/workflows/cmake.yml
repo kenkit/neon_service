@@ -188,21 +188,22 @@ jobs:
           tag: ${{ env.name }}
           token: ${{ secrets.SECRET_TOKEN }}
       - name: "Upload symbols"
-        shell: bash
+        shell: cmd
         working-directory: d:/programming/bak/neon_service/build
         env:
           QTAPP_SYMBOL_TOKEN: ${{ secrets.QTAPP_SYMBOL_TOKEN }}
           NEON_SYMBOL_TOKEN: ${{ secrets.NEON_SYMBOL_TOKEN }}
         run: |
-              del gtest_.pdb
+              cd $BUILD_TYPE 
+              rm gtest_.pdb
               7z  a -tzip -ir!*.pdb  archive.zip  -mfb=64 -mx=9 -aoa
-              curl --progress-bar --data-binary @archive.zip -H "Expect:" "%QTAPP_SYMBOL_TOKEN%"
-              curl --progress-bar --data-binary @archive.zip -H "Expect:" "%NEON_SYMBOL_TOKEN%"
+              curl --progress-bar --data-binary @archive.zip -H \"Expect:\" \"$QTAPP_SYMBOL_TOKEN\"
+              curl --progress-bar --data-binary @archive.zip -H \"Expect:\" \"$NEON_SYMBOL_TOKEN\"
 
       - name: "Test"
           # Execute tests defined by the CMake configuration.
           # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
         run: ctest -C $BUILD_TYPE
              git diff --check HEAD^
-        working-directory: d:/programming/bak/neon_service/build
+        working-directory: d:/programming/bak/neon_service/build/
         shell: bash
