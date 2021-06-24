@@ -178,6 +178,18 @@ jobs:
             git log -10   --pretty="%aD--%B" |Add-Content  -Encoding UTF8 -Path CHANGELOG.md
         shell: powershell
         working-directory: d:/programming/bak/neon_service/
+        
+      - name: "Upload symbols"
+        shell: cmd
+        working-directory: d:/programming/bak/neon_service/build
+        env:
+          QTAPP_SYMBOL_TOKEN: ${{ secrets.QTAPP_SYMBOL_TOKEN }}
+          NEON_SYMBOL_TOKEN: ${{ secrets.NEON_SYMBOL_TOKEN }}
+        run: |
+              cd %BUILD_TYPE%
+              7z  a -tzip -ir!*.pdb  archive.zip  -mfb=64 -mx=9 -aoa
+              curl --progress-bar --data-binary @archive.zip -H \"Expect:\" \"%QTAPP_SYMBOL_TOKEN%\"
+              curl --progress-bar --data-binary @archive.zip -H \"Expect:\" \"%NEON_SYMBOL_TOKEN%\"
 
 
       - name: "Create Release"
@@ -187,18 +199,6 @@ jobs:
           bodyFile:  d:/programming/bak/neon_service/CHANGELOG.md
           tag: ${{ env.name }}
           token: ${{ secrets.SECRET_TOKEN }}
-      - name: "Upload symbols"
-        shell: cmd
-        working-directory: d:/programming/bak/neon_service/build
-        env:
-          QTAPP_SYMBOL_TOKEN: 
-          NEON_SYMBOL_TOKEN: 
-        run: |
-              cd $BUILD_TYPE 
-              rm gtest_.pdb
-              7z  a -tzip -ir!*.pdb  archive.zip  -mfb=64 -mx=9 -aoa
-              curl --progress-bar --data-binary @archive.zip -H \"Expect:\" "${{ secrets.QTAPP_SYMBOL_TOKEN }}"
-              curl --progress-bar --data-binary @archive.zip -H \"Expect:\" "${{ secrets.NEON_SYMBOL_TOKEN }}"
 
       - name: "Test"
           # Execute tests defined by the CMake configuration.
