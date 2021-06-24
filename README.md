@@ -24,7 +24,7 @@ Neon Service was designed by DeadDevice and requires the installation of Neon.
 -   Firmware Download|Upload-(Encryption|Decryption) from server
 -   Supports automatic decompression of supported firmware files
 -   Upload system shares your files to our global search engine
--   ~~We are working on a discord server support system that will be integrated into Neon~~
+-   Working on SLA Bypass
 -   ~~Everything is a WIP atm.~~
 
 ## Installation
