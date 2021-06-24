@@ -8,7 +8,7 @@ Neon Service binary
 ![GitHub issues by-label](https://img.shields.io/github/issues-raw/kenkit/neon_service/neon_service_crash)
 ![GitHub issues by-label](https://img.shields.io/github/issues-raw/kenkit/neon_service/Investigating)
 
-Neon Service was designed by Neon Itelligence and requires the installation of Neon.
+Neon Service was designed by DeadDevice and requires the installation of Neon.
 
 ## Features
 
