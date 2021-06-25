@@ -188,8 +188,8 @@ jobs:
         run: |
               cd %BUILD_TYPE%
               7z  a -tzip -ir!*.pdb  archive.zip  -mfb=64 -mx=9 -aoa
-              curl --progress-bar --data-binary @archive.zip -H \"Expect:\" \"%QTAPP_SYMBOL_TOKEN%\"
-              curl --progress-bar --data-binary @archive.zip -H \"Expect:\" \"%NEON_SYMBOL_TOKEN%\"
+              curl --progress-bar --data-binary @archive.zip -H \"Expect:\" %QTAPP_SYMBOL_TOKEN%
+              curl --progress-bar --data-binary @archive.zip -H \"Expect:\" %NEON_SYMBOL_TOKEN%
 
 
       - name: "Create Release"
