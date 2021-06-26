@@ -15,7 +15,7 @@ Neon Service was designed by DeadDevice and requires the installation of Neon.
 -   ~~Youtube download/playback with neon~~
 -   Runs as a background service.
 -   File download manager.
--   Search engine for files that can only be download/decrypted with neon (file names are mangled to avoid prying)
+-    ~~Search engine for files that can only be download/decrypted with neon (file names are mangled to avoid prying) ~~
 -   Remote download manager.
 -   ~~Google chrome plugin to grab new download links like idm.~~
 -   Google drive plugin
