@@ -30,7 +30,7 @@ Neon Service was designed by DeadDevice and requires the installation of Neon.
 
 ## Installation
 
-Will be automatically installed by Neon on lauching
+Will be automatically installed by Neon updater
 
 We are working on an automated updater
 
