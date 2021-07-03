@@ -23,6 +23,10 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+      - name: Add SSH key
+        run:  dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\"
+        shell: cmd
+        
       - uses: actions/checkout@v2
       - name: Configure SSH
         run: |
