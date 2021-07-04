@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: dir
-        run:  C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe
+        run:  \"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe\"
         shell: cmd
         
       - uses: actions/checkout@v2
