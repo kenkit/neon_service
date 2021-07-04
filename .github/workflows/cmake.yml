@@ -205,10 +205,10 @@ jobs:
           tag: ${{ env.name }}
           token: ${{ secrets.SECRET_TOKEN }}
 
-      - name: "Test"
+       #- name: "Test"
           # Execute tests defined by the CMake configuration.
           # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-        run: ctest -C $BUILD_TYPE
-             git diff --check HEAD^
-        working-directory: d:/programming/bak/neon_service/build/
-        shell: bash
+         #run: ctest -C $BUILD_TYPE
+          #    git diff --check HEAD^
+         #working-directory: d:/programming/bak/neon_service/build/
+        # shell: bash
