@@ -39,6 +39,7 @@ We are working on an automated updater
 This project uses a number of plugins
 
 -   Most of the features require installation of Neon to be able to access them
+-   More work upcoming
 
 ## Development
 Project is not opensource but things may change in the future.
