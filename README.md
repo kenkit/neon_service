@@ -30,7 +30,9 @@ Neon Service was designed by DeadDevice and requires the installation of Neon.
 
 ## Installation
 
-Will be automatically installed by Neon updater
+Install neon updater to get everything.
+
+You might need visual studio redistributable 2015 for the installer will fix in next release of the installer
 
 We are working on an automated updater
 
