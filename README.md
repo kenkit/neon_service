@@ -8,7 +8,7 @@ Neon Service binary
 ![GitHub issues by-label](https://img.shields.io/github/issues-raw/kenkit/neon_service/neon_service_crash)
 ![GitHub issues by-label](https://img.shields.io/github/issues-raw/kenkit/neon_service/Investigating)
 
-Neon Service was designed by DeadDevice and requires the installation of Neon.
+Neon Service was designed by DeadDevice Technologies and requires the installation of Neon.
 
 ## Features
 
@@ -26,7 +26,6 @@ Neon Service was designed by DeadDevice and requires the installation of Neon.
 -   Supports automatic decompression of supported firmware files
 -   Upload system shares your files to our global search engine
 -   Working on SLA Bypass
--   ~~Everything is a WIP atm.~~
 
 ## Installation
 
