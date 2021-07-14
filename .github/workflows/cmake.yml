@@ -68,7 +68,7 @@ jobs:
         id: downloadfile # Remember to give an ID if you need the output filename
         name: download qt
         with:
-          url: "https://oshi.at/JLkHAK/pack.zip.gpg"
+          url: "https://www.dropbox.com/s/qsysephjsqa3b3i/pack.zip.gpg?dl=1"
           target: d:/programming/
 
       - uses: suisei-cn/actions-download-file@v1
