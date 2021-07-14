@@ -1,7 +1,6 @@
 # neon_service
 Neon Service binary
 
-[![Build status](https://ci.appveyor.com/api/projects/status/y2g984l5k70glw9u?svg=true)](https://ci.appveyor.com/project/kenkit/neon-service)
 [![GitHub Releases (by Release)](https://img.shields.io/github/downloads/kenkit/neon_service/latest/total)](https://github.com/kenkit/neon_installer/releases/latest)
 
 ![GitHub issues by-label](https://img.shields.io/github/issues-raw/kenkit/neon_service/qt_app_crash)
