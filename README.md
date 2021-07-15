@@ -11,7 +11,6 @@ Neon Service was designed by DeadDevice Technologies and requires the installati
 
 ## Features
 
--   ~~Youtube download/playback with neon~~
 -   Runs as a background service.
 -   File download manager.
 -   SUpports sharing credits.
