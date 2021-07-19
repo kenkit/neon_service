@@ -1,0 +1,3 @@
+[submodule "neon_service"]
+	path = neon_service
+	url = git@github.com:kenkit/neon_service_b.git
