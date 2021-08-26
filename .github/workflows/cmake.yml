@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: dir
-        run:  dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\14.29.30036\x86\Microsoft.VC142.CRT\"
+        run:  dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\14.29.30133\x86\Microsoft.VC142.CRT\"
         shell: cmd
       
       - uses: actions/checkout@v2
@@ -144,7 +144,7 @@ jobs:
           -DENABLE_SHARED_PTR=1
           -DUSE_FREEIMAGE=0
           -DENABLE_SSL_SERVER=1
-          -DWINDOWS_KIT_VER=10.0.19041.0 -DVC_CRED_VER=14.29.30036
+          -DWINDOWS_KIT_VER=10.0.19041.0 -DVC_CRED_VER=14.29.30133
           -DVC_EDITION=Enterprise
           -DQT_MOC_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7\bin\moc.exe
           -DQT_RCC_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7\bin\rcc.exe
