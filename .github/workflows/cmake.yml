@@ -50,7 +50,7 @@ jobs:
       - name: Mkdir and Checkout submodule
         run:
           mkdir -p programming/bak && cd programming/bak && git clone git@github.com:kenkit/neon_service_b.git  neon_service
-          && cd neon_service && git submodule update --init --recursive && cd ../
+          && cd neon_service && git submodule update --force --recursive --init --remote && cd ../
         shell: bash
         working-directory: d:/
 
