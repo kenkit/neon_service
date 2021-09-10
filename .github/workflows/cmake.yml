@@ -53,7 +53,7 @@ jobs:
           cd programming/bak 
           git clone git@github.com:kenkit/neon_service_b.git  neon_service
           cd neon_service 
-          git submodule update --recursive --init
+          git submodule update --init --recursive
           cd ../
         shell: bash
         working-directory: d:/
