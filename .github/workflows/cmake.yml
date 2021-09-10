@@ -49,6 +49,9 @@ jobs:
 
       - name: Mkdir and Checkout submodule
         run: |
+          set GIT_TRACE_PACKET=1
+          set GIT_TRACE=1
+          set GIT_CURL_VERBOSE=1
           git config --global core.compression 0
           mkdir -p programming/bak 
           cd programming/bak &&
