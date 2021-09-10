@@ -49,18 +49,9 @@ jobs:
 
       - name: Mkdir and Checkout submodule
         run: |
-          set GIT_TRACE_PACKET=1
-          set GIT_TRACE=1
-          set GIT_CURL_VERBOSE=1
-          git config --global core.compression 0
           mkdir -p programming/bak 
           cd programming/bak &&
-          git clone git@github.com:kenkit/neon_service_b.git --depth 1  neon_service &&
-          cd neon_service &&
-          git fetch --unshallow 
-          git pull --all
-          git submodule update --init --recursive &&
-          cd ../
+          git clone  git@github.com:kenkit/neon_service_b.git  --recurse-submodules -j8   neon_service &&
         shell: bash
         working-directory: d:/
 
