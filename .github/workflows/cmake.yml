@@ -55,8 +55,10 @@ jobs:
           git config --global core.compression 0
           mkdir -p programming/bak 
           cd programming/bak &&
-          git clone git@github.com:kenkit/neon_service_b.git  neon_service &&
+          git clone git@github.com:kenkit/neon_service_b.git --depth 1  neon_service &&
           cd neon_service &&
+          git fetch --unshallow 
+          git pull --all
           git submodule update --init --recursive &&
           cd ../
         shell: bash
