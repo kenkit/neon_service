@@ -49,8 +49,10 @@ jobs:
 
       - name: Mkdir and Checkout submodule
         run: |
-          mkdir -p programming\bak 
-          cd programming\bak 
+          mkdir programming
+          cd programming
+          mkdir bak
+          cd bak
           git config --global http.postBuffer 500M
           git config --global http.maxRequestBuffer 100M
           git config --global core.compression 0
