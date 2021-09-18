@@ -43,9 +43,9 @@ jobs:
           mkdir ~/.ssh
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-      - name: Create VHD
-        run:  diskpart /s %GITHUB_WORKSPACE%\dsk.txt
-        shell: cmd
+      #- name: Create VHD
+       # run:  diskpart /s %GITHUB_WORKSPACE%\dsk.txt
+        #shell: cmd
 
       - name: Mkdir and Checkout submodule
         run: |
