@@ -54,8 +54,8 @@ jobs:
           mkdir bak
           cd bak
           git config --global http.postBuffer 500M
-          git config --global http.maxRequestBuffer 100M
-          git clone  --reject-shallow git@github.com:kenkit/neon_service_b.git neon_service
+          git config --global http.maxRequestBuffer 500M
+          git clone  git@github.com:kenkit/neon_service_b.git neon_service
           cd neon_service 
           git submodule update --init --recursive --jobs 1
         shell: cmd
@@ -211,7 +211,6 @@ jobs:
           bodyFile:  d:/programming/bak/neon_service/CHANGELOG.md
           tag: ${{ env.name }}
           token: ${{ secrets.SECRET_TOKEN }}
-
 
        #- name: "Test"
           # Execute tests defined by the CMake configuration.
