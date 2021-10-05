@@ -3,9 +3,9 @@ Neon Service binary
 
 [![GitHub Releases (by Release)](https://img.shields.io/github/downloads/kenkit/neon_service/latest/total)](https://github.com/kenkit/neon_installer/releases/latest)
 
-![GitHub issues by-label](https://img.shields.io/github/issues-raw/kenkit/neon_service/qt_app_crash)
-![GitHub issues by-label](https://img.shields.io/github/issues-raw/kenkit/neon_service/neon_service_crash)
-![GitHub issues by-label](https://img.shields.io/github/issues-raw/kenkit/neon_service/Investigating)
+[![GitHub issues by-label](https://img.shields.io/github/issues-raw/kenkit/neon_service/qt_app_crash)](https://github.com/kenkit/neon_service/issues?q=is%3Aissue+is%3Aopen+label%3Aqt_app_crash)
+[![GitHub issues by-label](https://img.shields.io/github/issues-raw/kenkit/neon_service/neon_service_crash)](https://github.com/kenkit/neon_service/issues?q=is%3Aissue+is%3Aopen+label%3Aneon_service_crash)
+[![GitHub issues by-label](https://img.shields.io/github/issues-raw/kenkit/neon_service/Investigating)](https://github.com/kenkit/neon_service/issues?q=is%3Aissue+is%3Aopen+label%3AInvestigating)
 [![CMake](https://github.com/kenkit/neon_service/actions/workflows/cmake.yml/badge.svg)](https://github.com/kenkit/neon_service/actions/workflows/cmake.yml)
 
 Neon Service was designed by DeadDevice Technologies and requires the installation of Neon.
