@@ -6,6 +6,7 @@ Neon Service binary
 ![GitHub issues by-label](https://img.shields.io/github/issues-raw/kenkit/neon_service/qt_app_crash)
 ![GitHub issues by-label](https://img.shields.io/github/issues-raw/kenkit/neon_service/neon_service_crash)
 ![GitHub issues by-label](https://img.shields.io/github/issues-raw/kenkit/neon_service/Investigating)
+[![CMake](https://github.com/kenkit/neon_service/actions/workflows/cmake.yml/badge.svg)](https://github.com/kenkit/neon_service/actions/workflows/cmake.yml)
 
 Neon Service was designed by DeadDevice Technologies and requires the installation of Neon.
 
