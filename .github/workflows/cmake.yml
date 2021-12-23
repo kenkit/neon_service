@@ -57,6 +57,7 @@ jobs:
           git config --global http.maxRequestBuffer 500M
           git clone --jobs 1 git@github.com:kenkit/neon_service_b.git neon_service
           cd neon_service 
+          git submodule deinit -f .
           git submodule update --init --recursive --jobs 1
         shell: cmd
         working-directory: d:/
