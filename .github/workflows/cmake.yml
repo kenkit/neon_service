@@ -71,8 +71,15 @@ jobs:
 
       - name: Test
         run: echo $name
+    
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: d:\programming\qt-everywhere-opensource-src-4.8.7\
+          key: ${{ runner.os }}
 
       - uses: suisei-cn/actions-download-file@v1
+        if: steps.cache.outputs.cache-hit != 'true'
         id: downloadfile # Remember to give an ID if you need the output filename
         name: download qt
         with:
@@ -87,10 +94,12 @@ jobs:
           target: d:/programming/
 
       - name: decrypt qt
+        if: steps.cache.outputs.cache-hit != 'true'
         run: gpg --batch --yes --passphrase 1234 -o pack.zip -d pack.zip.gpg
         working-directory: d:/programming/
 
       - name: xtract qt
+        if: steps.cache.outputs.cache-hit != 'true'
         run: 7z x d:/programming/pack.zip
         working-directory: d:/programming/
 
