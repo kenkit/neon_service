@@ -179,7 +179,7 @@ jobs:
         shell: bash
         # Execute the build.  You can specify a specific target with "--target <NAME>"
         run: |
-          cmake --build . --config $BUILD_TYPE -j 2
+          cmake --build . --config $BUILD_TYPE -j 1
 
       - name: Create MSI Package
         # Use a bash shell so we can use the same syntax for environment variable
