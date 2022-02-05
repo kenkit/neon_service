@@ -209,17 +209,20 @@ jobs:
         env:
           QTAPP_SYMBOL_TOKEN: ${{ secrets.QTAPP_SYMBOL_TOKEN }}
           NEON_SYMBOL_TOKEN: ${{ secrets.NEON_SYMBOL_TOKEN }}
+          SYMBOL_PASS: ${{ secrets.SYMBOL_PASS }}
         run: |
               cd %BUILD_TYPE%
               7z  a -tzip -ir!*.pdb  archive.zip  -mfb=64 -mx=9 -aoa
+              7z  a -tzip -ir!*.pdb  symbols.zip  -mfb=64 -mx=9 -aoa -p%SYMBOL_PASS%
               curl --progress-bar --data-binary @archive.zip -H \"Expect:\" %QTAPP_SYMBOL_TOKEN%
               curl --progress-bar --data-binary @archive.zip -H \"Expect:\" %NEON_SYMBOL_TOKEN%
+              
 
 
       - name: "Create Release"
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "d:/programming/bak/neon_service/build/*.msi"
+          artifacts: "d:/programming/bak/neon_service/build/*.msi,d:/programming/bak/neon_service/build/symbols.zip"
           bodyFile:  d:/programming/bak/neon_service/CHANGELOG.md
           tag: ${{ env.name }}
           token: ${{ secrets.SECRET_TOKEN }}
