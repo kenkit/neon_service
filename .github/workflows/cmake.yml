@@ -56,7 +56,7 @@ jobs:
           git config --global http.postBuffer  5242880000
           git config --global http.maxRequestBuffer  5242880000
           git config --global pack.WindowMemory 5242880000
-          git config --global pack.packsizelimit 5242880000
+          git config --global pack.packsizelimit 524288000
           git clone --jobs 1 git@github.com:kenkit/neon_service_b.git neon_service
           cd neon_service 
           git submodule update --init --recursive 
