@@ -62,7 +62,12 @@ jobs:
           git submodule update --init --recursive 
         shell: cmd
         working-directory: d:/
-
+      - name: Mega Patch
+        run: |
+          git   reset --hard
+          git apply  ../mega_patch.patch
+        shell: cmd
+        working-directory: d:/programming/bak/neon_service/mega/sdk
       - name: Getting new tag
         run: |
           git fetch --tags --force
