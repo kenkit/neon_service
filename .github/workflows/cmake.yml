@@ -26,7 +26,6 @@ jobs:
       - name: dir
         run:  |
           dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\"
-          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\14.29.30133\x86\Microsoft.VC142.CRT\"
         shell: cmd
       
       - uses: actions/checkout@v2
