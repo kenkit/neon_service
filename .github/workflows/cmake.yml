@@ -19,13 +19,12 @@ jobs:
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [windows-2019]
     runs-on: ${{ matrix.os }}
 
     steps:
       - name: dir
-        run:  |
-          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\"
+        run:  dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\14.29.30133\x86\Microsoft.VC142.CRT\"
         shell: cmd
       
       - uses: actions/checkout@v2
