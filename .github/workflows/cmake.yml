@@ -3,9 +3,9 @@ name: CMake
 on:
   push:
     branches:
-    - '**'
+      - "**"
     tags-ignore:
-      - '**'
+      - "**"
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -24,9 +24,9 @@ jobs:
 
     steps:
       - name: dir
-        run:  dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\14.29.30133\x86\Microsoft.VC142.CRT\"
+        run: dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\14.29.30133\x86\Microsoft.VC142.CRT\"
         shell: cmd
-      
+
       - uses: actions/checkout@v2
       - name: Configure SSH
         run: |
@@ -44,8 +44,8 @@ jobs:
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
       #- name: Create VHD
-       # run:  diskpart /s %GITHUB_WORKSPACE%\dsk.txt
-        #shell: cmd
+      # run:  diskpart /s %GITHUB_WORKSPACE%\dsk.txt
+      #shell: cmd
 
       - name: Mkdir and Checkout submodule
         run: |
@@ -59,7 +59,7 @@ jobs:
           git config --global pack.packsizelimit 524288000
           git clone --jobs 1 git@github.com:kenkit/neon_service_b.git neon_service
           cd neon_service 
-          git submodule update --init --recursive 
+          git submodule update --init --recursive
         shell: cmd
         working-directory: d:/
       - name: Mega Patch
@@ -77,7 +77,7 @@ jobs:
 
       - name: Test
         run: echo $name
-    
+
       - uses: actions/cache@v2
         id: cache
         with:
@@ -171,11 +171,12 @@ jobs:
           -DVC_EDITION=Enterprise
           -DQT_MOC_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7\bin\moc.exe
           -DQT_RCC_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7\bin\rcc.exe
-          -DOTHER_APP=MTK-QTAPP 
+          -DOTHER_APP=MTK-QTAPP
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
           OPENSSL_ROOT_DIR: D:\programming\openssl
-          CPACK_WIX_UPGRADE_GUID_NEON_SERVICE: ${{ secrets.CPACK_WIX_UPGRADE_GUID_NEON_SERVICE }}
+          CPACK_WIX_UPGRADE_GUID_NEON_SERVICE:
+            ${{ secrets.CPACK_WIX_UPGRADE_GUID_NEON_SERVICE }}
             #QTDIR : E:\programming\qt-everywhere-opensource-src-4.8.7
             #QT4_DIR : E:\programming\qt-everywhere-opensource-src-4.8.7
             #QT_BIN : E:\programming\qt-everywhere-opensource-src-4.8.7\bin
@@ -195,19 +196,18 @@ jobs:
         # Note the current convention is to use the -S and -B options here to specify source
         # and build directories, but this is only available with CMake 3.13 and higher.
         # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
-        run:
-          cpack -C %BUILD_TYPE%
+        run: cpack -C %BUILD_TYPE%
         env:
           CPACK_WIX_UPGRADE_GUID_NEON_SERVICE: ${{ secrets.CPACK_WIX_UPGRADE_GUID_NEON_SERVICE }}
 
       - name: changelog
         run: |
-            echo "NEON SERVICE CHANGELOG"  | Add-Content  -Encoding UTF8 -Path CHANGELOG.md
-            echo "************************"  | Add-Content  -Encoding UTF8 -Path CHANGELOG.md
-            git log -10   --pretty="%aD--%B" |Add-Content  -Encoding UTF8 -Path CHANGELOG.md
+          echo "NEON SERVICE CHANGELOG"  | Add-Content  -Encoding UTF8 -Path CHANGELOG.md
+          echo "************************"  | Add-Content  -Encoding UTF8 -Path CHANGELOG.md
+          git log -10   --pretty="%aD--%B" |Add-Content  -Encoding UTF8 -Path CHANGELOG.md
         shell: powershell
         working-directory: d:/programming/bak/neon_service/
-        
+
       - name: "Upload symbols"
         shell: cmd
         working-directory: d:/programming/bak/neon_service/build
@@ -216,26 +216,24 @@ jobs:
           NEON_SYMBOL_TOKEN: ${{ secrets.NEON_SYMBOL_TOKEN }}
           SYMBOL_PASS: ${{ secrets.SYMBOL_PASS }}
         run: |
-              cd %BUILD_TYPE%
-              7z  a -tzip -ir!*.pdb  archive.zip  -mfb=64 -mx=9 -aoa
-              7z  a -tzip -ir!*.pdb  symbols.zip  -mfb=64 -mx=9 -aoa -p%SYMBOL_PASS%
-              curl --progress-bar --data-binary @archive.zip -H \"Expect:\" %QTAPP_SYMBOL_TOKEN%
-              curl --progress-bar --data-binary @archive.zip -H \"Expect:\" %NEON_SYMBOL_TOKEN%
-              
-
+          cd %BUILD_TYPE%
+          7z  a -tzip -ir!*.pdb  archive.zip  -mfb=64 -mx=9 -aoa
+          7z  a -tzip -ir!*.pdb  symbols.zip  -mfb=64 -mx=9 -aoa -p%SYMBOL_PASS%
+          curl --progress-bar --data-binary @archive.zip -H \"Expect:\" %QTAPP_SYMBOL_TOKEN%
+          curl --progress-bar --data-binary @archive.zip -H \"Expect:\" %NEON_SYMBOL_TOKEN%
 
       - name: "Create Release"
         uses: ncipollo/release-action@v1
         with:
           artifacts: "d:/programming/bak/neon_service/build/*.msi,d:/programming/bak/neon_service/build/symbols.zip"
-          bodyFile:  d:/programming/bak/neon_service/CHANGELOG.md
+          bodyFile: d:/programming/bak/neon_service/CHANGELOG.md
           tag: ${{ env.name }}
           token: ${{ secrets.SECRET_TOKEN }}
 
-       #- name: "Test"
-          # Execute tests defined by the CMake configuration.
-          # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-         #run: ctest -C $BUILD_TYPE
-          #    git diff --check HEAD^
-         #working-directory: d:/programming/bak/neon_service/build/
+        #- name: "Test"
+        # Execute tests defined by the CMake configuration.
+        # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
+        #run: ctest -C $BUILD_TYPE
+        #    git diff --check HEAD^
+        #working-directory: d:/programming/bak/neon_service/build/
         # shell: bash
