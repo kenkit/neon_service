@@ -225,7 +225,7 @@ jobs:
       - name: "Create Release"
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "d:/programming/bak/neon_service/build/*.msi,d:/programming/bak/neon_service/build/symbols.zip"
+          artifacts: "d:/programming/bak/neon_service/build/*.msi,d:/programming/bak/neon_service/build/Debug/symbols.zip"
           bodyFile: d:/programming/bak/neon_service/CHANGELOG.md
           tag: ${{ env.name }}
           token: ${{ secrets.SECRET_TOKEN }}
