@@ -79,13 +79,13 @@ jobs:
       - name: Test
         run: echo $name
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         id: cache
         with:
           path: d:\programming\qt-everywhere-opensource-src-4.8.7\
           key: ${{ runner.os }}
 
-      - uses: suisei-cn/actions-download-file@v1
+      - uses: suisei-cn/actions-download-file@v1.3.0
         if: steps.cache.outputs.cache-hit != 'true'
         id: downloadfile # Remember to give an ID if you need the output filename
         name: download qt
@@ -93,7 +93,7 @@ jobs:
           url: "https://www.dropbox.com/s/qsysephjsqa3b3i/pack.zip.gpg?dl=1"
           target: d:/programming/
 
-      - uses: suisei-cn/actions-download-file@v1
+      - uses: suisei-cn/actions-download-file@v1.3.0
         id: downloadfile2 # Remember to give an ID if you need the output filename
         name: download openssl
         with:
@@ -120,7 +120,7 @@ jobs:
         working-directory: d:/programming/
 
       - name: Install boost
-        uses: MarkusJx/install-boost@v1.0.1
+        uses: MarkusJx/install-boost@v2.4.1
         id: install-boost
         with:
           # REQUIRED: Specify the required boost version
@@ -173,6 +173,7 @@ jobs:
           -DQT_MOC_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7\bin\moc.exe
           -DQT_RCC_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7\bin\rcc.exe
           -DOTHER_APP=MTK-QTAPP
+          -DENABLE_SPDLOG=1
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
           OPENSSL_ROOT_DIR: D:\programming\openssl
