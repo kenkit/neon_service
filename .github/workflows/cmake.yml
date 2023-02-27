@@ -42,7 +42,13 @@ jobs:
       #- name: Create VHD
       # run:  diskpart /s %GITHUB_WORKSPACE%\dsk.txt
       #shell: cmd
-
+      - name: dir
+        run: |
+          dir "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Redist/MSVC/14.34.31931/debug_nonredist/x86/Microsoft.VC143.DebugCRT"
+          dir "C:/Program Files (x86)/Windows Kits/10/Redist/10.0.22000.0/ucrt/DLLs/x86"
+          dir "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Redist/MSVC/14.34.31931/debug_nonredist/x86/Microsoft.VC143.DebugMFC"
+          dir "C:/Program Files (x86)/Windows Kits/10/bin/10.0.22000.0/x86/ucrt"
+        shell: cmd
       - name: Mkdir and Checkout submodule
         run: |
           mkdir programming
