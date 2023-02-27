@@ -110,7 +110,7 @@ jobs:
         working-directory: d:/programming/
 
       - name: Install boost
-        uses: MarkusJx/install-boost@v1.0.1
+        uses: MarkusJx/install-boost@v2.4.1
         id: install-boost
         with:
           # REQUIRED: Specify the required boost version
