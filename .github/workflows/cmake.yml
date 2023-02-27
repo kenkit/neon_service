@@ -166,7 +166,7 @@ jobs:
           -DOTHER_APP=MTK-QTAPP
           -DENABLE_SPDLOG=1
           -DENABLE_MEGA_CMAKE_PATCH=0
-          -DUSE_PDFIUM=1
+          -DUSE_PDFIUM=0
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
           OPENSSL_ROOT_DIR: D:\programming\openssl
