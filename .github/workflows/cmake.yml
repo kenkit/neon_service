@@ -19,7 +19,7 @@ jobs:
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     strategy:
       matrix:
-        os: [windows-2019]
+        os: [windows-2022]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -120,9 +120,10 @@ jobs:
           # REQUIRED: Specify the required boost version
           # A list of supported versions can be found here:
           # https://github.com/actions/boost-versions/blob/main/versions-manifest.json
-          boost_version: 1.73.0
+          boost_version: 1.81.0
+          platform_version: 2022
           # OPTIONAL: Specify a toolset on windows
-          toolset: msvc14.2
+          toolset: msvc
       - name: Create Build Environment
         # Some projects don't allow in-source building, so create a separate build directory
         # We'll use this as our working directory for all subsequent commands
@@ -162,7 +163,7 @@ jobs:
           -DENABLE_SHARED_PTR=1
           -DUSE_FREEIMAGE=0
           -DENABLE_SSL_SERVER=1
-          -DWINDOWS_KIT_VER=10.0.19041.0 -DVC_CRED_VER=14.29.30133
+          -DWINDOWS_KIT_VER=10.0.22000.0 -DVC_CRED_VER=14.34.31931
           -DVC_EDITION=Enterprise
           -DQT_MOC_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7\bin\moc.exe
           -DQT_RCC_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7\bin\rcc.exe
