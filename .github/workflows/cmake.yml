@@ -174,6 +174,7 @@ jobs:
           -DENABLE_MEGA_CMAKE_PATCH=0
           -DUSE_PDFIUM=0
           -DENABLE_NBO_UNPACKER=1
+          -DBIT7Z_AUTO_FORMAT=1
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
           OPENSSL_ROOT_DIR: D:\programming\openssl
