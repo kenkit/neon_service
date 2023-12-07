@@ -45,7 +45,7 @@ jobs:
       - name: dir
         run: |
           dir "C:/Program Files (x86)/Windows Kits/10/Redist/"
-          dir "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Redist/MSVC/"
+          dir "C:/Program Files/Microsoft Visual Studio/2022/Community/vc/Redist/msvc"
           dir "C:/Program Files (x86)/Windows Kits/10/bin/"
         shell: cmd
       - name: Mkdir and Checkout submodule
