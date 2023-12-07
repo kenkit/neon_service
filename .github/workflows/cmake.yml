@@ -44,10 +44,9 @@ jobs:
       #shell: cmd
       - name: dir
         run: |
-          dir "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Redist/MSVC/14.34.31931/debug_nonredist/x86/Microsoft.VC143.DebugCRT"
-          dir "C:/Program Files (x86)/Windows Kits/10/Redist/10.0.22000.0/ucrt/DLLs/x86"
-          dir "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Redist/MSVC/14.34.31931/debug_nonredist/x86/Microsoft.VC143.DebugMFC"
-          dir "C:/Program Files (x86)/Windows Kits/10/bin/10.0.22000.0/x86/ucrt"
+          dir "C:/Program Files (x86)/Windows Kits/10/Redist/"
+          dir "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Redist/MSVC/"
+          dir "C:/Program Files (x86)/Windows Kits/10/bin/"
         shell: cmd
       - name: Mkdir and Checkout submodule
         run: |
@@ -165,7 +164,7 @@ jobs:
           -DENABLE_SHARED_PTR=1
           -DUSE_FREEIMAGE=0
           -DENABLE_SSL_SERVER=1
-          -DWINDOWS_KIT_VER=10.0.22000.0 -DVC_CRED_VER=14.34.31931
+          -DWINDOWS_KIT_VER=10.0.22000.0 -DVC_CRED_VER=14.38.33130
           -DVC_EDITION=Enterprise
           -DQT_MOC_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7\bin\moc.exe
           -DQT_RCC_EXECUTABLE=D:\programming\qt-everywhere-opensource-src-4.8.7\bin\rcc.exe
